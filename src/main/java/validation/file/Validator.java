@@ -13,8 +13,8 @@ abstract public class Validator {
 
     protected Errors validateAll(){
         addAllErrors();
-        for(IsValidating method : validatesMethods.keySet()){
-            if(method.isNotValidate()){
+        for(Validating method : validatesMethods.keySet()){
+            if(method.NotValidate()){
                 return validatesMethods.get(method);
             }
         }

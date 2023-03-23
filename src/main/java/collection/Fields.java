@@ -1,7 +1,6 @@
 package collection;
-import validators.Errors;
+//import validators.Errors;
 
-public class Fields {
 
 
 
@@ -12,7 +11,7 @@ public class Fields {
                 "поля не могут быть null, поле coordinate.x не должно превышать значение " + Fields.MAXIMUM_X, 2),
         ENGINEPOWER("сила двигателя", "может быть null" + " но значение поля должно быть больше 0", 3),
         VHICLETYPE("тип транспорта", "может быть " + VehicleType.getStringValues() + ", может быть null", 3),
-        FUELTYPE("тип топлива", "может быть " + FuelType.getStringValues() + ", может быть null", 4),
+        FUELTYPE("тип топлива", "может быть " + FuelType.getStringValues() + ", может быть null", 4);
 
         public final static float MAXIMUM_X = -661f;
         final String name, comments;
@@ -24,13 +23,13 @@ public class Fields {
             this.order = order;
         }
 
-        public static Fields getForOrder(int order){
-            for(Fields field : Fields.values()){
-                if(field.order == order) return  field;
-            }
-            System.out.println(Errors.NOTHASFIELD);
-            return null;
-        }
+//        public static Fields getForOrder(int order){
+//            for(Fields field : Fields.values()){
+//                if(field.order == order) return  field;
+//            }
+//            System.out.println(Errors.NOTHASFIELD);
+//            return null;
+//        }
 
         @Override
         public String toString(){
@@ -38,4 +37,3 @@ public class Fields {
         }
     }
 
-}

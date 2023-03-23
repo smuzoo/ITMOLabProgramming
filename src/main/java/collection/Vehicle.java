@@ -1,8 +1,8 @@
 package collection;
 
-import validators.fields.CoordinatesValidator;
-import validators.fields.ImpactSpeedValidator;
-import validators.fields.NameValidator;
+//import validators.fields.CoordinatesValidator;
+//import validators.fields.ImpactSpeedValidator;
+//import validators.fields.NameValidator;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
