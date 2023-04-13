@@ -17,7 +17,7 @@
             <y>25.5</y>
         </coordinates>
         <enginePower>2000</enginePower>
-        <type>TRUCK</type>
+        <type>CAR</type>
         <fuelType>DIESEL</fuelType>
     </vehicle>
 </vehicles>

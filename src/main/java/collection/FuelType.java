@@ -3,7 +3,9 @@ package collection;
 public enum FuelType {
     KEROSENE("KEROSENE", "1"),
     ALCOHOL("ALCOHOL", "2"),
-    NUCLEAR("NUCLEAR", "3");
+    DIESEL("DIESEL", "3"),
+    GASOLINE("GASOLINE","4"),
+    NUCLEAR("NUCLEAR", "5");
 
     private final String name, order;
     FuelType(String name, String order){
