@@ -3,11 +3,9 @@ package collection;
 //import validators.fields.CoordinatesValidator;
 //import validators.fields.ImpactSpeedValidator;
 //import validators.fields.NameValidator;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -26,7 +24,7 @@ public class Vehicle {
     private final Map<Fields, Consumer<String>> setters = new LinkedHashMap<>();
 
 
-    public Vehicle() {
+    public Vehicle(String name, Coordinates coordinates, Long enginePower, VehicleType type, FuelType fuelType) {
     }
 
     public Vehicle(UUID id, String name, Coordinates coordinates, LocalDateTime creationDate, Long enginePower, VehicleType type, FuelType fuelType) {

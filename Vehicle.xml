@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vehicles>
+    <vehicle>
+        <name>Car 1</name>
+        <coordinates>
+            <x>10.0</x>
+            <y>20.0</y>
+        </coordinates>
+        <enginePower>1000</enginePower>
+        <type>CAR</type>
+        <fuelType>GASOLINE</fuelType>
+    </vehicle>
+    <vehicle>
+        <name>Truck 1</name>
+        <coordinates>
+            <x>15.5</x>
+            <y>25.5</y>
+        </coordinates>
+        <enginePower>2000</enginePower>
+        <type>TRUCK</type>
+        <fuelType>DIESEL</fuelType>
+    </vehicle>
+</vehicles>
