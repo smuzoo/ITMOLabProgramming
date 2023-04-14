@@ -1,0 +1,2 @@
+private final Scanner scanner = new Scanner(System.in);
+что такое System.in??
