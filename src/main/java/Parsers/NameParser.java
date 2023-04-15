@@ -1,6 +1,6 @@
 package Parsers;
 
-public enum ParserName {
+public enum NameParser {
     PARSER_CONSOLE,
     PARSER_FILE;
 
