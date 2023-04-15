@@ -43,6 +43,7 @@ public class ParserFromFileToCollection {
                     FuelType fuelType = FuelType.valueOf(element.getElementsByTagName("fuelType").item(0).getTextContent());
                     Vehicle vehicle = new Vehicle(UUID.randomUUID(), name, coordinates, enginePower, type, fuelType);
                     vehicles.put(vehicle.getId(), vehicle);
+                    System.out.println(vehicles);
                 }
             }
         } catch (ParserConfigurationException | SAXException | IOException e) {

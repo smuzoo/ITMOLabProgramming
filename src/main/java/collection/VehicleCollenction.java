@@ -2,7 +2,6 @@ package collection;
 
 import Parsers.ParserFromFileToCollection;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -15,7 +14,10 @@ public class VehicleCollenction {
     public static void read(String FILE_PATH){
 
         vehicleHashMapCollection = ParserFromFileToCollection.read(FILE_PATH);
-        //System.out.println(vehicleHashMapCollection);
+        for (Map.Entry<UUID, Vehicle> entry : vehicleHashMapCollection.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue().toString());
+        }
+        System.out.println(vehicleHashMapCollection);
     }
 }
 

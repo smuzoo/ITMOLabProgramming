@@ -3,7 +3,9 @@ package collection;
 //import validators.fields.CoordinatesValidator;
 //import validators.fields.ImpactSpeedValidator;
 //import validators.fields.NameValidator;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -21,16 +23,27 @@ public class Vehicle {
     private FuelType fuelType; //Поле может быть null
     private  UUID id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private final Map<Fields, Predicate<String>> notNullSetters = new LinkedHashMap<>();
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "name='" + name + '\'' +
+                ", coordinates=" + coordinates +
+                ", creationDate=" + creationDate +
+                ", enginePower=" + enginePower +
+                ", type=" + type +
+                ", fuelType=" + fuelType +
+                ", id=" + id;
+    }
+
     private final Map<Fields, Consumer<String>> setters = new LinkedHashMap<>();
 
 
-    public Vehicle(UUID uuid, String name, Coordinates coordinates, Long enginePower, VehicleType type, FuelType fuelType) {
-    }
 
-    public Vehicle(UUID id, String name, Coordinates coordinates, LocalDateTime creationDate, Long enginePower, VehicleType type, FuelType fuelType) {
+    public Vehicle(UUID id, String name, Coordinates coordinates,Long enginePower, VehicleType type, FuelType fuelType) {
         this.name = name;
         this.coordinates = coordinates;
-        this.creationDate = creationDate;
+        creationDate = LocalDateTime.now();
         this.enginePower = enginePower;
         this.type = type;
         this.fuelType = fuelType;
@@ -42,7 +55,7 @@ public class Vehicle {
     }
 
     public UUID getId() {
-        return null;
+        return id;
     }
 }
 
