@@ -24,7 +24,7 @@ public class Vehicle {
     private final Map<Fields, Consumer<String>> setters = new LinkedHashMap<>();
 
 
-    public Vehicle(String name, Coordinates coordinates, Long enginePower, VehicleType type, FuelType fuelType) {
+    public Vehicle(UUID uuid, String name, Coordinates coordinates, Long enginePower, VehicleType type, FuelType fuelType) {
     }
 
     public Vehicle(UUID id, String name, Coordinates coordinates, LocalDateTime creationDate, Long enginePower, VehicleType type, FuelType fuelType) {
@@ -39,6 +39,10 @@ public class Vehicle {
 
     public Map<Fields, Predicate<String>> getNotNullSetters() {
         return notNullSetters;
+    }
+
+    public UUID getId() {
+        return null;
     }
 }
 

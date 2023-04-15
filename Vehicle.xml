@@ -3,7 +3,7 @@
     <vehicle>
         <name>Car 1</name>
         <coordinates>
-            <x>10.0</x>
+            <x>10</x>
             <y>20.0</y>
         </coordinates>
         <enginePower>1000</enginePower>
@@ -13,7 +13,7 @@
     <vehicle>
         <name>Truck 1</name>
         <coordinates>
-            <x>15.5</x>
+            <x>15</x>
             <y>25.5</y>
         </coordinates>
         <enginePower>2000</enginePower>

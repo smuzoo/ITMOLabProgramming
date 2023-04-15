@@ -1,6 +1,7 @@
 package Commands;
 
-import Parsers.Parser;
+
+import Parsers.Parsing;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,10 +9,10 @@ import java.util.Map;
 public class Controller {
     private final Map<String, Command> commandMap
             = new HashMap<>();
-    final Parser parser;
+    final Parsing parser;
 
 
-    public Controller(Parser parser) {
+    public Controller(Parsing parser) {
         this.parser = parser;
         initialization();
     }

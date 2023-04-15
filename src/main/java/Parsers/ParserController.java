@@ -1,9 +1,9 @@
 package Parsers;
 
 
-public class ParserController extends Parser {
+public class ParserController  {
 
-    public void setParser(Parser parser) {
+    public void setParser(Parsing parser) {
         this.parser = parser;
     }
 
@@ -11,13 +11,13 @@ public class ParserController extends Parser {
         this.nameParser = nameParser;
     }
 
-    private Parser parser;
+    private Parsing parser;
 
 
     private NameParser nameParser;
 
 
-    public Parser getParser() {
+    public Parsing getParser() {
         return parser;
     }
 
@@ -25,18 +25,17 @@ public class ParserController extends Parser {
         return nameParser;
     }
 
-    public ParserController(Parser parser, NameParser nameParser) {
+    public ParserController(Parsing parser, NameParser nameParser) {
         this.parser = parser;
         this.nameParser = nameParser;
     }
 
 
-    @Override
     public String getNewLine() {
         String request = parser.getNewLine();
         if(request == null){
         setParser(new ConsoleParser());
-        setNameParser(Parsers.NameParser.PARSER_CONSOLE);
+        setNameParser(NameParser.PARSER_CONSOLE);
         }
         return request;
     }
