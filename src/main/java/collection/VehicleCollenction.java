@@ -1,6 +1,6 @@
 package collection;
 
-import Parsers.ParserFromFileToCollection;
+import parsers.ParserFromFileToCollection;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

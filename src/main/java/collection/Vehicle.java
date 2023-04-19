@@ -33,7 +33,8 @@ public class Vehicle {
                 ", enginePower=" + enginePower +
                 ", type=" + type +
                 ", fuelType=" + fuelType +
-                ", id=" + id;
+                ", id=" + id +
+                "}";
     }
 
     private final Map<Fields, Consumer<String>> setters = new LinkedHashMap<>();
