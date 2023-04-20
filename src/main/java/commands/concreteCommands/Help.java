@@ -20,6 +20,6 @@ public class Help implements Command {
 
     @Override
     public String description() {
-        return null;
+        return "help" + " : показать доступные комманды";
     }
 }

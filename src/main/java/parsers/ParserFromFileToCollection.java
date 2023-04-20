@@ -17,6 +17,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import collection.*;
+import validation.Errors;
 
 public class ParserFromFileToCollection {
     public static LinkedHashMap<UUID, Vehicle> read(String fileName) {
@@ -44,9 +45,15 @@ public class ParserFromFileToCollection {
                     System.out.println(vehicles);
                 }
             }
-        } catch (ParserConfigurationException | SAXException | IOException e) {
-            e.printStackTrace();
+        } catch (SAXException e) {
+            System.out.println(Errors.IMPOSSIBLEXMLFILESTRUCTURE);
+
+        } catch (IOException e){
+            System.out.println(Errors.IMPOSSIBLEREADFILE);
+        } catch (ParserConfigurationException e){
+            System.out.println(Errors.IMPOSSIBLEPARSERCONFIGURATION);
         }
+
         return vehicles;
     }
 

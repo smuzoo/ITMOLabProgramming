@@ -1,6 +1,9 @@
 package commands;
 
 
+import commands.concreteCommands.Exit;
+import commands.concreteCommands.Help;
+import commands.concreteCommands.Show;
 import parsers.Parsing;
 
 import java.util.HashMap;
@@ -29,7 +32,9 @@ public class Controller {
         }
     }
     private void initialization(){
-        //addCommand("show", new);
+        addCommand("show", new Show());
+        addCommand("exit", new Exit());
+        addCommand("help", new Help());
 
     }
 

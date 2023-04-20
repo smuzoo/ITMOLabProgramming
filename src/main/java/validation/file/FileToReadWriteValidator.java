@@ -5,9 +5,9 @@ import validation.Validator;
 
 import java.io.File;
 
-public class FileToReadWriteValidation extends Validator {
+public class FileToReadWriteValidator extends Validator {
     private String FILEPATH;
-    public FileToReadWriteValidation(String FILEPATH){
+    public FileToReadWriteValidator(String FILEPATH){
         this.FILEPATH = FILEPATH;
     }
     private final File file = new File(FILEPATH);
@@ -24,8 +24,9 @@ public class FileToReadWriteValidation extends Validator {
     @Override
     protected void addAllErrors() {
         addError(this::isFileNotExist, Errors.NOTEXISTFILE);
-        addError(this::isFileNotCanRead, Errors.NOTCANREADFILE);
-        addError(this::isFileNotCanWrite, Errors.NOTCANWRITEFILE);
+        addError(this::isFileNotCanRead, Errors.CANNOTREADFILE);
+        addError(this::isFileNotCanWrite, Errors.CANNOTWRITEFILE);
 
     }
 }
+
