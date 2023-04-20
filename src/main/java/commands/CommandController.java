@@ -36,6 +36,7 @@ public class CommandController {
         addCommand("clear", new Clear());
         addCommand("remove_key", new RemoveKey());
         addCommand("show", new ShowCollection());
+        addCommand("insert", new Insert(parser));
 
 
     }

@@ -53,6 +53,10 @@ public class VehicleCollection {
         return vehicleHashMapCollection.entrySet();
     }
 
+    public static void add(Vehicle vehicle) {
+        dateOfLastChange = new Date();
+        vehicleHashMapCollection.put(vehicle.getId(), vehicle);
+    }
 }
 
 
