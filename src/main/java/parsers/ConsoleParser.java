@@ -1,6 +1,7 @@
 package parsers;
 
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class ConsoleParser implements Parsing {
@@ -8,6 +9,7 @@ public class ConsoleParser implements Parsing {
 
     @Override
     public String getNewLine() {
-        return scanner.nextLine();
+        return scanner.nextLine().toLowerCase(Locale.ROOT);
+
     }
 }

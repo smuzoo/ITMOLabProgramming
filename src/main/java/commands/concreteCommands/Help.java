@@ -10,8 +10,8 @@ public class Help implements Command {
 
     @Override
     public void execute(String ignore) {
-        Controller controller = new Controller(new ConsoleParser());
-        Map<String, Command> commandMap = controller.getCommands();
+        CommandController commandController = new CommandController(new ConsoleParser());
+        Map<String, Command> commandMap = commandController.getCommands();
         for(Command command : commandMap.values()){
             System.out.println(command.description());
         }

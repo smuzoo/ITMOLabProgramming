@@ -9,13 +9,13 @@ import parsers.Parsing;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Controller {
+public class CommandController {
     private final Map<String, Command> commandMap
             = new HashMap<>();
     final Parsing parser;
 
 
-    public Controller(Parsing parser) {
+    public CommandController(Parsing parser) {
         this.parser = parser;
         initialization();
     }
