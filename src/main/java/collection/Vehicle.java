@@ -1,9 +1,6 @@
 package collection;
 
-//import validators.fields.CoordinatesValidator;
-//import validators.fields.ImpactSpeedValidator;
-//import validators.fields.NameValidator;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDateTime;
 import java.util.LinkedHashMap;
@@ -53,6 +50,16 @@ public class Vehicle {
 
     public Map<Fields, Predicate<String>> getNotNullSetters() {
         return notNullSetters;
+    }
+    public Vehicle(){
+        this.creationDate = LocalDateTime.now();
+    }
+
+    public Map<Fields, Consumer<String>> getSetters() {
+        return setters;
+    }
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
     public UUID getId() {

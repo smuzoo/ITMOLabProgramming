@@ -1,9 +1,7 @@
 package commands;
 
 
-import commands.concreteCommands.Exit;
-import commands.concreteCommands.Help;
-import commands.concreteCommands.Show;
+import commands.concreteCommands.*;
 import parsers.Parsing;
 
 import java.util.HashMap;
@@ -32,9 +30,13 @@ public class CommandController {
         }
     }
     private void initialization(){
-        addCommand("show", new Show());
+        addCommand("info", new Info());
         addCommand("exit", new Exit());
         addCommand("help", new Help());
+        addCommand("clear", new Clear());
+        addCommand("remove_key", new RemoveKey());
+        addCommand("show", new ShowCollection());
+
 
     }
 
