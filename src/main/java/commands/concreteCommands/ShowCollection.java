@@ -1,19 +1,17 @@
 package commands.concreteCommands;
 
-import collection.Vehicle;
 import collection.VehicleCollection;
 import commands.Command;
-
-import java.util.Map;
-import java.util.UUID;
 
 public class ShowCollection implements Command {
     @Override
     public void execute(String ignore){
-        Map<UUID, Vehicle> humanBeingCollection = VehicleCollection.getHumanBeingCollection();
-        for(Vehicle human : humanBeingCollection.values()){
-            System.out.println(human);
-        }
+
+        //Map<Key, Vehicle> vehicleCollection = VehicleCollection.getVehicleCollection();
+
+        VehicleCollection.getKeys().forEach(System.out::println);
+        VehicleCollection.getVehicles().forEach(System.out::println);
+
     }
 
     @Override

@@ -20,8 +20,8 @@ import collection.*;
 import validation.Errors;
 
 public class ParserFromFileToCollection {
-    public static LinkedHashMap<UUID, Vehicle> read(String fileName) {
-        LinkedHashMap<UUID, Vehicle> vehicles = new LinkedHashMap<>();
+    public static LinkedHashMap<String, Vehicle> read(String fileName) {
+        LinkedHashMap<String, Vehicle> vehicles = new LinkedHashMap<>();
         try (InputStream inputStream = new FileInputStream(fileName)) {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -40,8 +40,9 @@ public class ParserFromFileToCollection {
                     Long enginePower = Long.parseLong(element.getElementsByTagName("enginePower").item(0).getTextContent());
                     VehicleType type = VehicleType.valueOf(element.getElementsByTagName("type").item(0).getTextContent());
                     FuelType fuelType = FuelType.valueOf(element.getElementsByTagName("fuelType").item(0).getTextContent());
+                    String key = element.getElementsByTagName("key").item(0).getTextContent();
                     Vehicle vehicle = new Vehicle(UUID.randomUUID(), name, coordinates, enginePower, type, fuelType);
-                    vehicles.put(vehicle.getId(), vehicle);
+                    vehicles.put(key, vehicle);
                     //System.out.println(vehicles);
                 }
             }

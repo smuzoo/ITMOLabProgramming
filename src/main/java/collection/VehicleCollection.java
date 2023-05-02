@@ -5,7 +5,8 @@ import parsers.ParserFromFileToCollection;
 import java.util.*;
 
 public class VehicleCollection {
-    public static Map<UUID, Vehicle> vehicleHashMapCollection = new LinkedHashMap<>();
+
+    public static Map<String, Vehicle> vehicleHashMapCollection = new LinkedHashMap<>();
 
     private final static Date dateOfInitialization = new Date();
     private static Date dateOfLastChange = new Date();
@@ -32,14 +33,15 @@ public class VehicleCollection {
         vehicleHashMapCollection.remove(id);
     }
     public static long getCountVehicleCollection(){ return vehicleHashMapCollection.size(); }
-    public static Vehicle getVehicle(UUID id){
-        return vehicleHashMapCollection.get(id);
+
+    public static Collection<String> getKeys(){
+        return vehicleHashMapCollection.keySet();
     }
-    public static boolean hasElement(UUID id) {return vehicleHashMapCollection.get(id) != null;}
-    public static Collection<Vehicle> getHumanBeings(){
+    public static boolean hasElement(String key) {return vehicleHashMapCollection.get(key) != null;}
+    public static Collection<Vehicle> getVehicles(){
         return vehicleHashMapCollection.values();
     }
-    public static Map<UUID, Vehicle> getHumanBeingCollection() {
+    public static Map<String, Vehicle> getVehicleCollection() {
         return vehicleHashMapCollection;
     }
     public static Date getDateOfInitialization() {
@@ -49,13 +51,13 @@ public class VehicleCollection {
         return dateOfLastChange;
     }
 
-    public static Set<Map.Entry<UUID, Vehicle>> getEntrySet(){
+    public static Set<Map.Entry<String, Vehicle>> getEntrySet(){
         return vehicleHashMapCollection.entrySet();
     }
 
-    public static void add(Vehicle vehicle) {
+    public static void add(String key, Vehicle vehicle) {
         dateOfLastChange = new Date();
-        vehicleHashMapCollection.put(vehicle.getId(), vehicle);
+        vehicleHashMapCollection.put(key, vehicle);
     }
 }
 

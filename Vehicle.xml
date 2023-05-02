@@ -10,6 +10,7 @@
         <enginePower>1000</enginePower>
         <type>CAR</type>
         <fuelType>GASOLINE</fuelType>
+        <key>1</key>
     </vehicle>
     <vehicle>
         <name>Truck 1</name>
@@ -20,5 +21,6 @@
         <enginePower>2000</enginePower>
         <type>CAR</type>
         <fuelType>DIESEL</fuelType>
+        <key>1</key>
     </vehicle>
 </vehicles>

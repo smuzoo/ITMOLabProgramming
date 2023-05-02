@@ -1,5 +1,7 @@
 package collection;
 
+import org.jetbrains.annotations.Nullable;
+
 public enum FuelType {
     KEROSENE("KEROSENE", "1"),
     ALCOHOL("ALCOHOL", "2"),
@@ -17,6 +19,16 @@ public enum FuelType {
     }
     public  String getOrder(){
         return order;
+    }
+
+    public static @Nullable FuelType getFuelType(String s) {
+        FuelType[] fuelTypesValues = FuelType.values();
+        for (FuelType fuelType : fuelTypesValues) {
+            if (s.equals(fuelType.getName()) || s.equals(fuelType.getOrder())) {
+                return fuelType;
+            }
+        }
+        return null;
     }
     public static String getStringValues() {
         StringBuilder sb = new StringBuilder();

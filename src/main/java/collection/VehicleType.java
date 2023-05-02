@@ -1,5 +1,7 @@
 package collection;
 
+import org.jetbrains.annotations.Nullable;
+
 public enum VehicleType {
     CAR("CAR", "1"),
     BOAT("BOAT", "2"),
@@ -16,6 +18,16 @@ public enum VehicleType {
     }
     public  String getOrder(){
         return order;
+    }
+
+    public static @Nullable VehicleType getVehicleType(String s) {
+        VehicleType[] VehicleTypesValues = VehicleType.values();
+        for (VehicleType vehicleType : VehicleTypesValues) {
+            if (s.equals(vehicleType.getName()) || s.equals(vehicleType.getOrder())) {
+                return vehicleType;
+            }
+        }
+        return null;
     }
     public static String getStringValues() {
         StringBuilder sb = new StringBuilder();
