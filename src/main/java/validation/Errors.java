@@ -19,13 +19,15 @@ public enum Errors {
             " Vehicle Type может быть " + VehicleType.getStringValues ()  + "\n"
             + " Fuel Type может быть " + FuelType.getStringValues()),
     NOTHASTWOCOORDINATES("Не было введено 2 координаты x и y "),
-    LOWERX("Значение поля coordinate.x не может превышать " + Fields.MAXIMUM_X),
+    LOWERX("Значение поля coordinate.x не может превышать " + Fields.MIM_X),
     NOTCANTRANSFORMTOINT("Данный аргумент не является целым числом"),
     NOTCANTRANSFORMTODOUBLE("Данный аргумент не является числом двойной точности"),
     EMPTYFIELD("Данное поле не может быть пустым "),
     NOTCANTRANSFORMTOLONG("Данный аргумент не является long числом "),
     ENGINEPOWERLOWERZERO("Неверная сила двигателя " + Fields.ENGINEPOWER),
-    NOTHASFIELD("Номера с таким полем не существует");
+    NOTHASFIELD("Номера с таким полем не существует"),
+    NOTCANTRASFORMTOUUID("Данное значение не корректно для UUID"),
+    UUIDUSUSED("Данное значение UUID уже использовано");
 
 
     private String error;
