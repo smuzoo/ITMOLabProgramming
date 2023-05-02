@@ -9,3 +9,6 @@ private final Scanner scanner = new Scanner(System.in);
 
 петя, [20.04.2023 20:44]
 id всегда генерируется сам
+
+лямбда выражение? как
+ addError(() -> validateOnHaveEnvironment()

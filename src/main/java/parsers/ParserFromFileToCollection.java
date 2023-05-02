@@ -47,11 +47,14 @@ public class ParserFromFileToCollection {
             }
         } catch (SAXException e) {
             System.out.println(Errors.IMPOSSIBLEXMLFILESTRUCTURE);
-
         } catch (IOException e){
             System.out.println(Errors.IMPOSSIBLEREADFILE);
         } catch (ParserConfigurationException e){
-            System.out.println(Errors.IMPOSSIBLEPARSERCONFIGURATION);
+            System.out.println(Errors.IMPOSSIBLEPARSERCONFIGURATIONFROMFILE);
+        } catch (NumberFormatException e){
+            System.out.println(Errors.INCORRECTNUMBERFORMATFROMFILE);
+        } catch (IllegalArgumentException e){
+            System.out.println(Errors.INCORRECTENUMFORMATFROMFILE);
         }
 
         return vehicles;

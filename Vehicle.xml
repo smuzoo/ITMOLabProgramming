@@ -5,6 +5,7 @@
         <coordinates>
             <x>10</x>
             <y>20.0</y>
+            <z>3</z>
         </coordinates>
         <enginePower>1000</enginePower>
         <type>CAR</type>

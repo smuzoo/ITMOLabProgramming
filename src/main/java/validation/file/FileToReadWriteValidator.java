@@ -6,18 +6,21 @@ import validation.Validator;
 import java.io.File;
 
 public class FileToReadWriteValidator extends Validator {
-    private String FILEPATH;
-    public FileToReadWriteValidator(String FILEPATH){
-        this.FILEPATH = FILEPATH;
+    private final File file;
+
+    public FileToReadWriteValidator(File filename) {
+        this.file = filename;
     }
-    private final File file = new File(FILEPATH);
-    protected boolean isFileNotExist(){
+
+    protected boolean isFileNotExist() {
         return !file.exists();
     }
-    protected boolean isFileNotCanRead(){
+
+    protected boolean isFileNotCanRead() {
         return !file.canRead();
     }
-    private boolean isFileNotCanWrite(){
+
+    private boolean isFileNotCanWrite() {
         return !file.canWrite();
     }
 
