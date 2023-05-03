@@ -2,6 +2,7 @@ import collection.VehicleCollection;
 import commands.CommandController;
 import org.jetbrains.annotations.NotNull;
 import parsers.ConsoleParser;
+import parsers.FileConstant;
 import validation.env.EnvValidator;
 import validation.file.FileToReadWriteValidator;
 
@@ -14,9 +15,10 @@ public class Main {
         EnvValidator envValidator = new EnvValidator(args.length);
         envValidator.validateWithExit();
         final String FILEPATH = args[0];
-        VehicleCollection.read(FILEPATH);
         FileToReadWriteValidator fileValidatorToReadAndWrite = new FileToReadWriteValidator(new File(FILEPATH));
         fileValidatorToReadAndWrite.validateWithExit();
+        FileConstant.setFilePath(FILEPATH);
+        VehicleCollection.read(FILEPATH);
         ConsoleParser parser = new ConsoleParser();
         CommandController commandController = new CommandController(parser);
         String request;

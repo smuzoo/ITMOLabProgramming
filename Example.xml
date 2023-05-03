@@ -5,30 +5,22 @@
         <coordinates>
             <x>10</x>
             <y>20.0</y>
+            <z>3</z>
         </coordinates>
         <enginePower>1000</enginePower>
         <type>CAR</type>
         <fuelType>GASOLINE</fuelType>
-    </vehicle>
-    <vehicle>
-        <name>Motorcycle 1</name>
-        <coordinates>
-            <x>30</x>
-            <y>40.0</y>
-        </coordinates>
-        <enginePower>500</enginePower>
-        <type>MOTORCYCLE</type>
-        <fuelType>PETROL</fuelType>
+        <key>1</key>
     </vehicle>
     <vehicle>
         <name>Truck 1</name>
         <coordinates>
-            <x>50.0</x>
-            <y>60.0</y>
+            <x>15</x>
+            <y>25.5</y>
         </coordinates>
         <enginePower>2000</enginePower>
-        <type>TRUCK</type>
+        <type>CAR</type>
         <fuelType>DIESEL</fuelType>
-
+        <key>1</key>
     </vehicle>
 </vehicles>

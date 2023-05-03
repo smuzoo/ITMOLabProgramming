@@ -9,13 +9,15 @@ public class ShowCollection implements Command {
 
         //Map<Key, Vehicle> vehicleCollection = VehicleCollection.getVehicleCollection();
 
-        VehicleCollection.getKeys().forEach(System.out::println);
+        VehicleCollection.keySet().forEach( System.out::println);
         VehicleCollection.getVehicles().forEach(System.out::println);
 
     }
 
     @Override
     public String description(){
-        return "show" + " : вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
+        return "show" + " : вывести в стандартный поток вывода все элементы коллекции " +
+                "и ключи к ним соответственно в строковом представлении";
+
     }
 }

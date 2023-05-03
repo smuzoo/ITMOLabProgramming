@@ -27,7 +27,8 @@ public enum Errors {
     ENGINEPOWERLOWERZERO("Неверная сила двигателя " + Fields.ENGINEPOWER),
     NOTHASFIELD("Номера с таким полем не существует"),
     NOTCANTRASFORMTOUUID("Данное значение не корректно для UUID"),
-    UUIDUSUSED("Данное значение UUID уже использовано");
+    UUIDUSUSED("Данное значение UUID уже использовано"),
+    IMPOSSIBLEWRITETOFILE("Невозможно записать данные в файл");
 
 
     private String error;

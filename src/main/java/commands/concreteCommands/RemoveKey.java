@@ -9,7 +9,7 @@ public class RemoveKey implements Command {
     @Override
     public void execute(String argument){
 
-            VehicleCollection.remove(UUID.fromString(argument));
+            VehicleCollection.remove(argument);
             System.out.println("Элемент был удалён");
 
     }

@@ -37,6 +37,7 @@ public class CommandController {
         addCommand("remove_key", new RemoveKey());
         addCommand("show", new ShowCollection());
         addCommand("insert", new InsertVehicle(parser));
+        addCommand("save", new Save());
 
 
     }

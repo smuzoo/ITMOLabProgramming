@@ -43,7 +43,6 @@ public class ParserFromFileToCollection {
                     String key = element.getElementsByTagName("key").item(0).getTextContent();
                     Vehicle vehicle = new Vehicle(UUID.randomUUID(), name, coordinates, enginePower, type, fuelType);
                     vehicles.put(key, vehicle);
-                    //System.out.println(vehicles);
                 }
             }
         } catch (SAXException e) {

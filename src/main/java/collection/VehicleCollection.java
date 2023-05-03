@@ -28,19 +28,24 @@ public class VehicleCollection {
         vehicleHashMapCollection.clear();
     }
 
-    public static void remove(UUID id){
+    public static void remove(String id){
         dateOfLastChange = new Date();
         vehicleHashMapCollection.remove(id);
     }
     public static long getCountVehicleCollection(){ return vehicleHashMapCollection.size(); }
 
-    public static Collection<String> getKeys(){
+    public static Collection<String> keySet(){
         return vehicleHashMapCollection.keySet();
     }
     public static boolean hasElement(String key) {return vehicleHashMapCollection.get(key) != null;}
     public static Collection<Vehicle> getVehicles(){
         return vehicleHashMapCollection.values();
     }
+
+    public static Map<String, Vehicle> getVehicleHashMapCollection() {
+        return vehicleHashMapCollection;
+    }
+
     public static Map<String, Vehicle> getVehicleCollection() {
         return vehicleHashMapCollection;
     }

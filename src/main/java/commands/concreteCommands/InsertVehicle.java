@@ -20,7 +20,7 @@ public class InsertVehicle implements Command {
     public void execute(String idArgument) {
         VehicleCreate vehicleCreate =  new VehicleCreate(parser);
         final String newKey = idArgument;
-        if  (VehicleCollection.getKeys().stream().anyMatch(key-> key.equals(newKey))){
+        if  (VehicleCollection.keySet().stream().anyMatch(key-> key.equals(newKey))){
             System.out.println("takie est");
         } else {
             KeyValidator keyValidator = new KeyValidator(idArgument);

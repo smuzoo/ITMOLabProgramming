@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <vehicles>
-    <vehicle>
-        <name>Car 1</name>
-        <coordinates>
-            <x>10</x>
-            <y>20.0</y>
-            <z>3</z>
-        </coordinates>
-        <enginePower>1000</enginePower>
-        <type>CAR</type>
-        <fuelType>GASOLINE</fuelType>
-        <key>1</key>
-    </vehicle>
-    <vehicle>
-        <name>Truck 1</name>
-        <coordinates>
-            <x>15</x>
-            <y>25.5</y>
-        </coordinates>
-        <enginePower>2000</enginePower>
-        <type>CAR</type>
-        <fuelType>DIESEL</fuelType>
-        <key>1</key>
-    </vehicle>
+  <vehicle>
+    <name>Truck 1</name>
+    <coordinates>
+      <x>15</x>
+      <y>25.5</y>
+    </coordinates>
+    <enginePower>2000</enginePower>
+    <type>CAR</type>
+    <fuelType>DIESEL</fuelType>
+    <key>1</key>
+  </vehicle>
+  <vehicle>
+    <name>gg</name>
+    <coordinates>
+      <x>1</x>
+      <y>2.0</y>
+    </coordinates>
+    <enginePower>3000</enginePower>
+    <type>CHOPPER</type>
+    <fuelType>GASOLINE</fuelType>
+    <key>2</key>
+  </vehicle>
 </vehicles>

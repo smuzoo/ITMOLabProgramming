@@ -38,13 +38,13 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle " + id + "\n" +
+        return  "\n" + "Vehicle " + id + "\n" +
                 "name = " + name + "\n" +
                 "coordinates = " + coordinates.getX() + "; " + coordinates.getX()+  "\n" +
                 "creationDate = " + creationDate + "\n" +
                 "enginePower = " + enginePower  + "\n" +
                 "type = " + vehicleType + "\n" +
-                "fuelType = " + fuelType + "\n";
+                "fuelType = " + fuelType;
     }
 
     private final Map<Fields, Consumer<String>> setters = new LinkedHashMap<>();
