@@ -19,7 +19,7 @@ public enum Errors {
             " Vehicle Type может быть " + VehicleType.getStringValues ()  + "\n"
             + " Fuel Type может быть " + FuelType.getStringValues()),
     NOTHASTWOCOORDINATES("Не было введено 2 координаты x и y "),
-    LOWERX("Значение поля coordinate.x не может превышать " + Fields.MIM_X),
+    LOWERX("Значение поля coordinate.x не может быть меньше " + Fields.MIM_X),
     NOTCANTRANSFORMTOINT("Данный аргумент не является целым числом"),
     NOTCANTRANSFORMTODOUBLE("Данный аргумент не является числом двойной точности"),
     EMPTYFIELD("Данное поле не может быть пустым "),

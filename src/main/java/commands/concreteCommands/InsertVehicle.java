@@ -21,7 +21,7 @@ public class InsertVehicle implements Command {
         VehicleCreate vehicleCreate =  new VehicleCreate(parser);
         final String newKey = idArgument;
         if  (VehicleCollection.keySet().stream().anyMatch(key-> key.equals(newKey))){
-            System.out.println("takie est");
+            System.out.println("Элемент с таким ключом уже есть");
         } else {
             KeyValidator keyValidator = new KeyValidator(idArgument);
             if (keyValidator.isValid()) {

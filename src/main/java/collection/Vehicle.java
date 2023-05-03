@@ -4,6 +4,8 @@ package collection;
 import validation.values.CoordinatesValidator;
 import validation.values.EnginePowerValidator;
 import validation.values.NameValidator;
+import validation.values.coordinates.XCoordinateValidator;
+import validation.values.coordinates.YCoordinateValidator;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -18,6 +20,9 @@ public class Vehicle {
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private java.time.LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private int x;
+
+    private double y;
 
 
     public String getKey() {
@@ -74,6 +79,8 @@ public class Vehicle {
 
 
 
+
+
     public UUID getId() {
         return id;
     }
@@ -116,6 +123,13 @@ public class Vehicle {
     public FuelType getFuelType() {
         return fuelType;
     }
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
 
     public void setFuelType(String fuelType) {
         this.fuelType = FuelType.getFuelType(fuelType);
@@ -151,7 +165,7 @@ public class Vehicle {
 
     public boolean setNotNullCoordinates(String coordinates) {
 
-        String[] coords = coordinates.split(",");
+        String[] coords = coordinates.split(";");
         CoordinatesValidator coordinatesValidator = new CoordinatesValidator(coords);
         if(coordinatesValidator.isValid()){
             int x = Integer.parseInt(coords[0]);
@@ -161,6 +175,30 @@ public class Vehicle {
         }
         return false;
     }
+
+    public boolean setNotNullCoordinateX(String argument){
+        XCoordinateValidator xCoordinateValidator = new XCoordinateValidator(argument);
+        if(xCoordinateValidator.isValid()){
+            int x = Integer.parseInt(argument);
+            setX(x);
+
+        }
+
+        return false;
+    }
+
+    public boolean setNotNullCoordinateY(String argument){
+        YCoordinateValidator yCoordinateValidator = new YCoordinateValidator(argument);
+        if(yCoordinateValidator.isValid()){
+            double y = Double.parseDouble(argument);
+            setY(y);
+            setCoordinates(new Coordinates(x,y));
+
+        }
+
+        return false;
+    }
+
 
     public boolean setEnginePower(String enginePower){
         if(enginePower.equals("")) {
@@ -179,10 +217,14 @@ public class Vehicle {
     {
         addNotNullSetter(Fields.NAME, this::setNotNullName);
         addNotNullSetter(Fields.COORDINATES, this::setNotNullCoordinates);
+        /*addNotNullSetter(Fields.X, this::setNotNullCoordinateX);
+        addNotNullSetter(Fields.Y, this::setNotNullCoordinateY);*/
         addSetter(Fields.ENGINEPOWER, this::setEnginePower);
         addSetter(Fields.FUELTYPE, this::setFuelType);
         addSetter(Fields.VHICLETYPE, this::setVehicleType);
     }
+
+
 }
 
 

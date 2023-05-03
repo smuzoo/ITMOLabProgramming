@@ -7,13 +7,18 @@ import validation.Errors;
 public enum Fields {
 
         NAME("имя", "не может быть null", 1),
-        COORDINATES("координаты", "coordinate.x,coordinate.y (через запятую)" +
+       COORDINATES("координаты", "coordinate.x;coordinate.y (через точку c запятой), например {3;5} " +
                 "поля не могут быть null, поле coordinate.x должно превышать значение " + Fields.MIM_X, 2),
-        ENGINEPOWER("сила двигателя", "может быть null" + " но значение поля должно быть больше 0", 3),
-        VHICLETYPE("тип транспорта", "может быть " + VehicleType.getStringValues() + ", может быть null", 3),
-        FUELTYPE("тип топлива", "может быть " + FuelType.getStringValues() + ", может быть null", 4);
 
-        public final static float MIM_X = -661;
+        X("координата X","поле не должно быть null и должно превышать " + Fields.MIM_X,2 ),
+        Y("координата Y","поле не должно быть null",3 ),
+        ENGINEPOWER("сила двигателя", "может быть null" + " но значение поля должно быть больше 0", 4),
+        VHICLETYPE("тип транспорта", "может быть " + VehicleType.getStringValues() + ", может быть null", 5),
+
+
+        FUELTYPE("тип топлива", "может быть " + FuelType.getStringValues() + ", может быть null", 6);
+
+        public final static int MIM_X = -661;
         final String name, comments;
         final int order;
 
