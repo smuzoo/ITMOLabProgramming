@@ -6,11 +6,10 @@ import validation.Validator;
 import java.io.File;
 
 public class FileToReadValidator extends Validator {
-    private String filename;
+    private File file;
     public FileToReadValidator(String filename){
-        this.filename = filename;
+        this.file = new File(filename);
     }
-    private final File file = new File(filename);
     protected boolean isFileNotExist(){
         return !file.exists();
     }

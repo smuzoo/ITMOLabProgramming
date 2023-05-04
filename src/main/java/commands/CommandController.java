@@ -2,19 +2,29 @@ package commands;
 
 
 import commands.concreteCommands.*;
+import commands.concreteCommands.ExecuteScript.ExecuteScript;
 import parsers.Parsing;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CommandController {
     private final Map<String, Command> commandMap
             = new HashMap<>();
     final Parsing parser;
+    private List<String> historyFiles;
 
 
     public CommandController(Parsing parser) {
         this.parser = parser;
+        initialization();
+    }
+
+    public CommandController(Parsing parser, List<String> historyFiles) {
+        this.parser = parser;
+        this.historyFiles = historyFiles;
         initialization();
     }
 
@@ -38,6 +48,7 @@ public class CommandController {
         addCommand("show", new ShowCollection());
         addCommand("insert", new InsertVehicle(parser));
         addCommand("save", new Save());
+        addCommand("execute_script", new ExecuteScript());
 
 
     }

@@ -28,7 +28,9 @@ public enum Errors {
     NOTHASFIELD("Номера с таким полем не существует"),
     NOTCANTRASFORMTOUUID("Данное значение не корректно для UUID"),
     UUIDUSUSED("Данное значение UUID уже использовано"),
-    IMPOSSIBLEWRITETOFILE("Невозможно записать данные в файл");
+    IMPOSSIBLEWRITETOFILE("Невозможно записать данные в файл"),
+    NOTHASARG("Эта команда принимает на вход 1 аргумент"),
+    RECURSION("В скрипте присутствует рекурсия");
 
 
     private String error;

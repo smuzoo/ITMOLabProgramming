@@ -33,4 +33,26 @@
     <fuelType>DIESEL</fuelType>
     <key>3</key>
   </vehicle>
+  <vehicle>
+    <name>GG</name>
+    <coordinates>
+      <x>3</x>
+      <y>4.0</y>
+    </coordinates>
+    <enginePower>2</enginePower>
+    <type>CAR</type>
+    <fuelType>DIESEL</fuelType>
+    <key>4</key>
+  </vehicle>
+  <vehicle>
+    <name>GGWP</name>
+    <coordinates>
+      <x>3</x>
+      <y>5.0</y>
+    </coordinates>
+    <enginePower>3</enginePower>
+    <type>SHIP</type>
+    <fuelType>GASOLINE</fuelType>
+    <key>5</key>
+  </vehicle>
 </vehicles>

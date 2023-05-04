@@ -1,7 +1,7 @@
 package parsers;
 
 
-public class ParserController  {
+public class ParserController implements Parsing {
 
     public void setParser(Parsing parser) {
         this.parser = parser;
@@ -35,7 +35,8 @@ public class ParserController  {
         String request = parser.getNewLine();
         if(request == null){
         setParser(new ConsoleParser());
-        setNameParser(NameParser.PARSER_CONSOLE);
+        setNameParser(NameParser.PARSERCONSOLE);
+        request = parser.getNewLine();
         }
         return request;
     }

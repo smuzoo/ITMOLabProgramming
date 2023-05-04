@@ -11,7 +11,7 @@ import java.io.File;
 
 public class Main {
     public static void main(String @NotNull [] args) {
-        //valid на filepath
+
         EnvValidator envValidator = new EnvValidator(args.length);
         envValidator.validateWithExit();
         final String FILEPATH = args[0];
