@@ -9,7 +9,15 @@ import validation.file.FileToReadWriteValidator;
 import java.io.File;
 
 
+/**
+ * The type Main.
+ */
 public class Main {
+    /**
+     * Main.
+     *
+     * @param args the args
+     */
     public static void main(String @NotNull [] args) {
 
         EnvValidator envValidator = new EnvValidator(args.length);
@@ -22,11 +30,9 @@ public class Main {
         ConsoleParser parser = new ConsoleParser();
         CommandController commandController = new CommandController(parser);
         String request;
-        while(!((request = parser.getNewLine()).equals("exit"))){
+        while (!((request = parser.getNewLine()).equals("exit"))) {
             commandController.executeCommand(request);
         }
-
-
 
 
     }

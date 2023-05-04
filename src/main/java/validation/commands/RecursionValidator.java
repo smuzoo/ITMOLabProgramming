@@ -4,23 +4,29 @@ import commands.concreteCommands.ExecuteScript.ExecuteScriptLogger;
 import validation.Errors;
 import validation.Validator;
 
-import java.util.List;
-
+/**
+ * The type Recursion validator.
+ */
 public class RecursionValidator extends Validator {
 
 
     private final String nameFile;
 
+    /**
+     * Instantiates a new Recursion validator.
+     *
+     * @param nameFile the name file
+     */
     public RecursionValidator(String nameFile) {
         this.nameFile = nameFile;
     }
 
-    private boolean isRecursion(){
+    private boolean isRecursion() {
         return ExecuteScriptLogger.contains(nameFile);
     }
 
     @Override
-    public void addAllErrors(){
+    public void addAllErrors() {
         addError(this::isRecursion, Errors.RECURSION);
     }
 }

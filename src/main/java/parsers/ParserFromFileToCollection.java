@@ -1,25 +1,36 @@
 package parsers;
 
 
+import collection.Coordinates;
+import collection.FuelType;
+import collection.Vehicle;
+import collection.VehicleType;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+import validation.Errors;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-import collection.*;
-import validation.Errors;
-
+/**
+ * The type Parser from file to collection.
+ */
 public class ParserFromFileToCollection {
+    /**
+     * Read linked hash map.
+     *
+     * @param fileName the file name
+     * @return the linked hash map
+     */
     public static LinkedHashMap<String, Vehicle> read(String fileName) {
         LinkedHashMap<String, Vehicle> vehicles = new LinkedHashMap<>();
         try (InputStream inputStream = new FileInputStream(fileName)) {
@@ -47,13 +58,13 @@ public class ParserFromFileToCollection {
             }
         } catch (SAXException e) {
             System.out.println(Errors.IMPOSSIBLEXMLFILESTRUCTURE);
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println(Errors.IMPOSSIBLEREADFILE);
-        } catch (ParserConfigurationException e){
+        } catch (ParserConfigurationException e) {
             System.out.println(Errors.IMPOSSIBLEPARSERCONFIGURATIONFROMFILE);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println(Errors.INCORRECTNUMBERFORMATFROMFILE);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(Errors.INCORRECTENUMFORMATFROMFILE);
         }
 

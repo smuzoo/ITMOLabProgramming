@@ -1,7 +1,16 @@
 package parsers;
 
+/**
+ * The enum Name parser.
+ */
 public enum NameParser {
+    /**
+     * Parserconsole name parser.
+     */
     PARSERCONSOLE,
-    PARSERFILE;
+    /**
+     * Parserfile name parser.
+     */
+    PARSERFILE
 
 }

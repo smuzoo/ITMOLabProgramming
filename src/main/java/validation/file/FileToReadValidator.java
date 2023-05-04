@@ -5,15 +5,36 @@ import validation.Validator;
 
 import java.io.File;
 
+/**
+ * The type File to read validator.
+ */
 public class FileToReadValidator extends Validator {
-    private File file;
-    public FileToReadValidator(String filename){
+    private final File file;
+
+    /**
+     * Instantiates a new File to read validator.
+     *
+     * @param filename the filename
+     */
+    public FileToReadValidator(String filename) {
         this.file = new File(filename);
     }
-    protected boolean isFileNotExist(){
+
+    /**
+     * Is file not exist boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean isFileNotExist() {
         return !file.exists();
     }
-    protected boolean isFileNotCanRead(){
+
+    /**
+     * Is file not can read boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean isFileNotCanRead() {
         return !file.canRead();
     }
 

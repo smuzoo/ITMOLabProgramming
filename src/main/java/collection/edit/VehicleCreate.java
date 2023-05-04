@@ -8,13 +8,26 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+/**
+ * The type Vehicle create.
+ */
 public class VehicleCreate {
     private final Parsing parser;
 
+    /**
+     * Instantiates a new Vehicle create.
+     *
+     * @param parser the parser
+     */
     public VehicleCreate(Parsing parser) {
         this.parser = parser;
     }
 
+    /**
+     * Create vehicle.
+     *
+     * @return the vehicle
+     */
     public Vehicle create() {
         Vehicle vehicle = new Vehicle();
         Map<Fields, Predicate<String>> notNullSetters = vehicle.getNotNullSetters();

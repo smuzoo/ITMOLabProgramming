@@ -1,20 +1,38 @@
 package validation;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * The type Validator.
+ */
 abstract public class Validator {
     private final Map<Validating, Errors> validatesMethods = new LinkedHashMap<>();
 
+    /**
+     * Add all errors.
+     */
     abstract protected void addAllErrors();
 
-    protected void addError(Validating method, Errors error){
+    /**
+     * Add error.
+     *
+     * @param method the method
+     * @param error  the error
+     */
+    protected void addError(Validating method, Errors error) {
         validatesMethods.put(method, error);
     }
 
-    protected Errors validateAll(){
+    /**
+     * Validate all errors.
+     *
+     * @return the errors
+     */
+    protected Errors validateAll() {
         addAllErrors();
-        for(Validating method : validatesMethods.keySet()){
-            if(method.notValidate()){
+        for (Validating method : validatesMethods.keySet()) {
+            if (method.notValidate()) {
                 return validatesMethods.get(method);
             }
         }
@@ -22,19 +40,26 @@ abstract public class Validator {
     }
 
 
-
-    public boolean isValid(){
+    /**
+     * Is valid boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isValid() {
         Errors error = validateAll();
-        if(error != Errors.NOTHAVEERRORS){
+        if (error != Errors.NOTHAVEERRORS) {
             System.out.println(error);
             return false;
         }
         return true;
     }
 
-    public void validateWithExit(){
+    /**
+     * Validate with exit.
+     */
+    public void validateWithExit() {
         boolean validation = isValid();
-        if(!validation)System.exit(130);
+        if (!validation) System.exit(130);
     }
 
 

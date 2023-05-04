@@ -9,27 +9,30 @@ import validation.commands.ArgValidator;
 import validation.commands.RecursionValidator;
 import validation.file.FileToReadValidator;
 
-import java.util.List;
-
+/**
+ * The type Execute script.
+ */
 public class ExecuteScript implements Command {
 
+    private static int recursion;
     private final int MAX_RECURSION = 300;
 
-    private static int recursion;
 
-
+    /**
+     * Instantiates a new Execute script.
+     */
     public ExecuteScript() {
         recursion++;
     }
 
     @Override
-    public void execute(String FILEPATH){
+    public void execute(String FILEPATH) {
         ArgValidator argValidator = new ArgValidator(FILEPATH);
-        if(argValidator.isValid()){
+        if (argValidator.isValid()) {
             FileToReadValidator FileToReadValidator = new FileToReadValidator(FILEPATH);
-            if(FileToReadValidator.isValid()) {
+            if (FileToReadValidator.isValid()) {
                 RecursionValidator recursionValidator = new RecursionValidator(FILEPATH);
-                if(recursionValidator.isValid()) {
+                if (recursionValidator.isValid()) {
                     ParserController parser = new ParserController(new FileParser(FILEPATH), NameParser.PARSERFILE);
                     CommandController commandController = new CommandController(parser);
                     ExecuteScriptLogger.addFile(FILEPATH);
@@ -49,7 +52,7 @@ public class ExecuteScript implements Command {
 
     @Override
     public String description() {
-        return "execute_script " + "file_name" +  " : считать и исполнить скрипт из указанного файла. В скрипте содержатся" +
+        return "execute_script " + "file_name" + " : считать и исполнить скрипт из указанного файла. В скрипте содержатся" +
                 " команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.";
     }
 }

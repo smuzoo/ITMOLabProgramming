@@ -1,20 +1,28 @@
 package validation.values;
 
-import collection.VehicleCollection;
 import validation.Errors;
 import validation.Validator;
 
-import java.util.UUID;
-
+/**
+ * The type Uuid validator.
+ */
 public class UUIDValidator extends Validator {
 
+    /**
+     * The Id.
+     */
     protected final String id;
 
+    /**
+     * Instantiates a new Uuid validator.
+     *
+     * @param id the id
+     */
     public UUIDValidator(String id) {
         this.id = id;
     }
 
-    private boolean isEmpty(){
+    private boolean isEmpty() {
         return id.equals("");
     }
 
@@ -26,8 +34,6 @@ public class UUIDValidator extends Validator {
         }
         return false;
     }*/
-
-
 
 
     @Override

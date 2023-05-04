@@ -5,31 +5,52 @@ import commands.concreteCommands.*;
 import commands.concreteCommands.ExecuteScript.ExecuteScript;
 import parsers.Parsing;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type Command controller.
+ */
 public class CommandController {
+    /**
+     * The Parsing.
+     */
+    final Parsing parsing;
     private final Map<String, Command> commandMap
             = new HashMap<>();
-    final Parsing parser;
     private List<String> historyFiles;
 
 
-    public CommandController(Parsing parser) {
-        this.parser = parser;
+    /**
+     * Instantiates a new Command controller.
+     *
+     * @param parsing the parsing
+     */
+    public CommandController(Parsing parsing) {
+        this.parsing = parsing;
         initialization();
     }
 
-    public CommandController(Parsing parser, List<String> historyFiles) {
-        this.parser = parser;
+    /**
+     * Instantiates a new Command controller.
+     *
+     * @param parsing      the parsing
+     * @param historyFiles the history files
+     */
+    public CommandController(Parsing parsing, List<String> historyFiles) {
+        this.parsing = parsing;
         this.historyFiles = historyFiles;
         initialization();
     }
 
 
-    public void executeCommand(String commandText){
+    /**
+     * Execute command.
+     *
+     * @param commandText the command text
+     */
+    public void executeCommand(String commandText) {
         final String[] commandWithArgument = commandText.split(" ");
         final String commandName = commandWithArgument.length > 0 ? commandWithArgument[0] : "";
         final String argument = commandWithArgument.length > 1 ? commandWithArgument[1] : "";
@@ -39,16 +60,24 @@ public class CommandController {
             command.execute(argument);
         }
     }
-    private void initialization(){
+
+    private void initialization() {
         addCommand("info", new Info());
         addCommand("exit", new Exit());
         addCommand("help", new Help());
         addCommand("clear", new Clear());
         addCommand("remove_key", new RemoveKey());
         addCommand("show", new ShowCollection());
-        addCommand("insert", new InsertVehicle(parser));
+        addCommand("insert", new InsertVehicle(parsing));
         addCommand("save", new Save());
         addCommand("execute_script", new ExecuteScript());
+        addCommand("remove_greater", new RemoveGreater(parsing));
+        addCommand("filer_greater_than_engine_power", new FilterGreaterThanEnginePower());
+        addCommand("average_of_engine_power", new AverageOfEnginePower());
+        addCommand("min_by_creation_date", new MinByCreationTime());
+        addCommand("update_id", new UpdateID());
+        addCommand("replace_if_greater", new ReplaceIfGreater(parsing));
+        addCommand("replace_if_lower", new ReplaceIfLower(parsing));
 
 
     }
@@ -58,8 +87,11 @@ public class CommandController {
     }
 
 
-
-
+    /**
+     * Gets commands.
+     *
+     * @return the commands
+     */
     public Map<String, Command> getCommands() {
         return commandMap;
     }

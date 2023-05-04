@@ -4,15 +4,25 @@ import parsers.ParserFromFileToCollection;
 
 import java.util.*;
 
+/**
+ * The type Vehicle collection.
+ */
 public class VehicleCollection {
 
-    public static Map<String, Vehicle> vehicleHashMapCollection = new LinkedHashMap<>();
-
     private final static Date dateOfInitialization = new Date();
+    /**
+     * The constant vehicleHashMapCollection.
+     */
+    public static Map<String, Vehicle> vehicleHashMapCollection = new LinkedHashMap<>();
     private static Date dateOfLastChange = new Date();
 
 
-    public static void read(String FILE_PATH){
+    /**
+     * Read.
+     *
+     * @param FILE_PATH the file path
+     */
+    public static void read(String FILE_PATH) {
 
         vehicleHashMapCollection = ParserFromFileToCollection.read(FILE_PATH);
 
@@ -23,43 +33,112 @@ public class VehicleCollection {
         System.out.println(vehicleHashMapCollection);*/
     }
 
-    public static void clear(){
+    /**
+     * Clear.
+     */
+    public static void clear() {
         dateOfLastChange = new Date();
         vehicleHashMapCollection.clear();
     }
 
-    public static void remove(String id){
+    /**
+     * Remove.
+     *
+     * @param key the key
+     */
+    public static void remove(String key) {
         dateOfLastChange = new Date();
-        vehicleHashMapCollection.remove(id);
+        vehicleHashMapCollection.remove(key);
     }
-    public static long getCountVehicleCollection(){ return vehicleHashMapCollection.size(); }
 
-    public static Collection<String> keySet(){
+    /**
+     * Get count vehicle collection long.
+     *
+     * @return the long
+     */
+    public static long getCountVehicleCollection() {
+        return vehicleHashMapCollection.size();
+    }
+
+    /**
+     * Key set collection.
+     *
+     * @return the collection
+     */
+    public static Collection<String> keySet() {
         return vehicleHashMapCollection.keySet();
     }
-    public static boolean hasElement(String key) {return vehicleHashMapCollection.get(key) != null;}
-    public static Collection<Vehicle> getVehicles(){
+
+    /**
+     * Has element boolean.
+     *
+     * @param key the key
+     * @return the boolean
+     */
+    public static boolean hasElement(String key) {
+        return vehicleHashMapCollection.get(key) != null;
+    }
+
+    /**
+     * Get vehicles collection.
+     *
+     * @return the collection
+     */
+    public static Collection<Vehicle> getVehicles() {
         return vehicleHashMapCollection.values();
     }
 
+    /**
+     * Gets vehicle hash map collection.
+     *
+     * @return the vehicle hash map collection
+     */
     public static Map<String, Vehicle> getVehicleHashMapCollection() {
         return vehicleHashMapCollection;
     }
 
+    /**
+     * Gets vehicle collection.
+     *
+     * @return the vehicle collection
+     */
     public static Map<String, Vehicle> getVehicleCollection() {
         return vehicleHashMapCollection;
     }
+
+    /**
+     * Gets date of initialization.
+     *
+     * @return the date of initialization
+     */
     public static Date getDateOfInitialization() {
         return dateOfInitialization;
     }
+
+    /**
+     * Gets date of last change.
+     *
+     * @return the date of last change
+     */
     public static Date getDateOfLastChange() {
         return dateOfLastChange;
     }
 
-    public static Set<Map.Entry<String, Vehicle>> getEntrySet(){
+    /**
+     * Get entry set set.
+     *
+     * @return the set
+     */
+    public static Set<Map.Entry<String, Vehicle>> getEntrySet() {
         return vehicleHashMapCollection.entrySet();
     }
 
+    /**
+     * Add.
+     *
+     * @param key     the key
+     * @param vehicle the vehicle
+     */
     public static void add(String key, Vehicle vehicle) {
         dateOfLastChange = new Date();
         vehicleHashMapCollection.put(key, vehicle);

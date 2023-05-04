@@ -3,6 +3,9 @@ package validation.values;
 import validation.Errors;
 import validation.Validator;
 
+/**
+ * The type Coordinates validator.
+ */
 public class CoordinatesValidator extends Validator {
 
 
@@ -10,13 +13,18 @@ public class CoordinatesValidator extends Validator {
     private String x;
     private String y;
 
-    public CoordinatesValidator(String[] args){
+    /**
+     * Instantiates a new Coordinates validator.
+     *
+     * @param args the args
+     */
+    public CoordinatesValidator(String[] args) {
         this.coordinates = args;
     }
 
 
-    private boolean isNotHaveEnoughLength(){
-        if(coordinates.length == 2) {
+    private boolean isNotHaveEnoughLength() {
+        if (coordinates.length == 2) {
             this.x = coordinates[0];
             this.y = coordinates[1];
             return false;
@@ -24,20 +32,20 @@ public class CoordinatesValidator extends Validator {
         return true;
     }
 
-    private boolean isNotCanTransformX(){
-        try{
+    private boolean isNotCanTransformX() {
+        try {
             Integer.parseInt(x);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return true;
         }
 
         return false;
     }
 
-    private boolean isNotCanTransformY(){
-        try{
+    private boolean isNotCanTransformY() {
+        try {
             Double.parseDouble(y);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return true;
         }
 
@@ -45,9 +53,10 @@ public class CoordinatesValidator extends Validator {
     }
 
 
-    private boolean isLowerX(){
+    private boolean isLowerX() {
         return Integer.parseInt(x) < -661;
     }
+
     @Override
     protected void addAllErrors() {
         addError(this::isNotHaveEnoughLength, Errors.NOTHASTWOCOORDINATES);

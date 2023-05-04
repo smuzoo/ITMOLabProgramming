@@ -1,6 +1,5 @@
 package commands.concreteCommands;
 
-import collection.Vehicle;
 import collection.VehicleCollection;
 import commands.Command;
 import parsers.ConsoleParser;
@@ -11,8 +10,11 @@ import validation.file.FileToReadWriteValidator;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
+import java.nio.charset.StandardCharsets;
 
+/**
+ * The type Save.
+ */
 public class Save implements Command {
 
     @Override
@@ -27,7 +29,7 @@ public class Save implements Command {
             fileValidatorToReadAndWrite = new FileToReadWriteValidator(new File(FILE_PATH));
         }
         try {
-            PrintWriter writer = new PrintWriter(FILE_PATH, "UTF-8");
+            PrintWriter writer = new PrintWriter(FILE_PATH, StandardCharsets.UTF_8);
 
             writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             writer.println("<vehicles>");
@@ -58,6 +60,6 @@ public class Save implements Command {
 
     @Override
     public String description() {
-        return  "save" + " : сохранить коллекцию в файл";
+        return "save" + " : сохранить коллекцию в файл";
     }
 }
