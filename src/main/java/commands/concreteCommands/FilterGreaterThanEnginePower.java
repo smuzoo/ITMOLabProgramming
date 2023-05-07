@@ -13,10 +13,12 @@ public class FilterGreaterThanEnginePower implements Command {
         EnginePowerValidator enginePowerValidator = new EnginePowerValidator(argument);
         if (enginePowerValidator.isValid()) {
             Long Largument = Long.parseLong(argument);
-            VehicleCollection.getVehicles().stream().filter(vehicle -> vehicle.getEnginePower() > Largument)
+            VehicleCollection.getVehicles().stream()
+                    .filter(vehicle -> {
+                        Long enginePower = vehicle.getEnginePower();
+                        return enginePower != null && enginePower.longValue() > Largument;
+                    })
                     .forEach(System.out::println);
-
-
         }
     }
 

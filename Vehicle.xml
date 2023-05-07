@@ -9,50 +9,25 @@
     <enginePower>1000</enginePower>
     <type>CAR</type>
     <fuelType>GASOLINE</fuelType>
-    <key>1</key>
+  </vehicle>
+  <vehicle>
+    <name>Motorcycle 1</name>
+    <coordinates>
+      <x>30</x>
+      <y>40.0</y>
+    </coordinates>
+    <enginePower>500</enginePower>
+    <type>MOTORCYCLE</type>
+    <fuelType>PETROL</fuelType>
   </vehicle>
   <vehicle>
     <name>Truck 1</name>
     <coordinates>
-      <x>15</x>
-      <y>25.5</y>
+      <x>50.0</x>
+      <y>60.0</y>
     </coordinates>
     <enginePower>2000</enginePower>
-    <type>CAR</type>
+    <type>TRUCK</type>
     <fuelType>DIESEL</fuelType>
-    <key>2</key>
-  </vehicle>
-  <vehicle>
-    <name>gg</name>
-    <coordinates>
-      <x>3</x>
-      <y>4.0</y>
-    </coordinates>
-    <enginePower>4</enginePower>
-    <type>BOAT</type>
-    <fuelType>DIESEL</fuelType>
-    <key>3</key>
-  </vehicle>
-  <vehicle>
-    <name>GG</name>
-    <coordinates>
-      <x>3</x>
-      <y>4.0</y>
-    </coordinates>
-    <enginePower>2</enginePower>
-    <type>CAR</type>
-    <fuelType>DIESEL</fuelType>
-    <key>4</key>
-  </vehicle>
-  <vehicle>
-    <name>GGWP</name>
-    <coordinates>
-      <x>3</x>
-      <y>5.0</y>
-    </coordinates>
-    <enginePower>3</enginePower>
-    <type>SHIP</type>
-    <fuelType>GASOLINE</fuelType>
-    <key>5</key>
   </vehicle>
 </vehicles>

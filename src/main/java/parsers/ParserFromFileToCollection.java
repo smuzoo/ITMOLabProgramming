@@ -48,9 +48,33 @@ public class ParserFromFileToCollection {
                     int x = Integer.parseInt(coordinatesElement.getElementsByTagName("x").item(0).getTextContent());
                     double y = Double.parseDouble(coordinatesElement.getElementsByTagName("y").item(0).getTextContent());
                     Coordinates coordinates = new Coordinates(x, y);
-                    Long enginePower = Long.parseLong(element.getElementsByTagName("enginePower").item(0).getTextContent());
-                    VehicleType type = VehicleType.valueOf(element.getElementsByTagName("type").item(0).getTextContent());
-                    FuelType fuelType = FuelType.valueOf(element.getElementsByTagName("fuelType").item(0).getTextContent());
+                    Long enginePower = null;
+                    String enginePowerText = element.getElementsByTagName("enginePower").item(0).getTextContent();
+
+
+                    if (enginePowerText != null && !enginePowerText.isEmpty()) {
+                        enginePower = Long.parseLong(enginePowerText);
+                    } else {
+                        enginePower = null;
+                    }
+                    VehicleType type = null;
+                    try {
+                        type = VehicleType.valueOf(element.getElementsByTagName("type").item(0).getTextContent());
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Значение VehicleType неверно, было присвоено значение null "+Errors.INCORRECTENUMFORMATFROMFILE);
+                    }
+
+                    FuelType fuelType = null;
+                    String fuelTypeStr = element.getElementsByTagName("fuelType").item(0).getTextContent();
+                    if (fuelTypeStr != null && !fuelTypeStr.isEmpty()) {
+                        try {
+                            fuelType = FuelType.valueOf(fuelTypeStr);
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Значение FuelType неверно, было присвоено значение null "+Errors.INCORRECTENUMFORMATFROMFILE);
+                        }
+                    }
+
+
                     String key = element.getElementsByTagName("key").item(0).getTextContent();
                     Vehicle vehicle = new Vehicle(UUID.randomUUID(), name, coordinates, enginePower, type, fuelType);
                     vehicles.put(key, vehicle);
@@ -64,8 +88,9 @@ public class ParserFromFileToCollection {
             System.out.println(Errors.IMPOSSIBLEPARSERCONFIGURATIONFROMFILE);
         } catch (NumberFormatException e) {
             System.out.println(Errors.INCORRECTNUMBERFORMATFROMFILE);
-        } catch (IllegalArgumentException e) {
-            System.out.println(Errors.INCORRECTENUMFORMATFROMFILE);
+        /*} catch (IllegalArgumentException e) {
+            System.out.println(Errors.INCORRECTENUMFORMATFROMFILE);*/
+
         }
 
         return vehicles;

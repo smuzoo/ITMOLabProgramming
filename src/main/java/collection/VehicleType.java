@@ -22,6 +22,7 @@ public enum VehicleType {
      * Motorcycle vehicle type.
      */
     MOTORCYCLE("MOTORCYCLE", "4"),
+    NULL("null", "5"),
     /**
      * Chopper vehicle type.
      */

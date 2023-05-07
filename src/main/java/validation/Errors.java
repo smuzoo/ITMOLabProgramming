@@ -49,8 +49,8 @@ public enum Errors {
      * The Incorrectenumformatfromfile.
      */
     INCORRECTENUMFORMATFROMFILE("Неверный формат, Vehicle Type и/или Fuel Type не являются значениями списка \n" +
-            " Vehicle Type может быть " + VehicleType.getStringValues() + "\n"
-            + " Fuel Type может быть " + FuelType.getStringValues()),
+            "Vehicle Type может быть " + VehicleType.getStringValues() + "\n"
+            + "Fuel Type может быть " + FuelType.getStringValues()),
     /**
      * Nothastwocoordinates errors.
      */

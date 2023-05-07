@@ -186,8 +186,18 @@ public class Vehicle {
      * @return the engine power
      */
     public Long getEnginePower() {
-        return enginePower;
+        if (enginePower == null) {
+
+            return null;
+        } else {
+            return enginePower;
+        }
     }
+
+    public String getEnginePowerAsString() {
+        return (enginePower != null) ? enginePower.toString() : "";
+    }
+
 
     /**
      * Sets engine power.
@@ -204,7 +214,11 @@ public class Vehicle {
      * @return the vehicle type
      */
     public VehicleType getVehicleType() {
-        return vehicleType;
+        if (vehicleType == null) {
+            return VehicleType.NULL;
+        } else {
+            return vehicleType;
+        }
     }
 
     /**
@@ -222,7 +236,13 @@ public class Vehicle {
      * @return the fuel type
      */
     public FuelType getFuelType() {
-        return fuelType;
+        if(fuelType == null){
+        return FuelType.NULL;
+
+        }else{
+            return fuelType;
+        }
+
     }
 
     /**
@@ -380,6 +400,8 @@ public class Vehicle {
         }
         return false;
     }
+
+
 
 
 }

@@ -22,10 +22,11 @@ public enum FuelType {
      * Gasoline fuel type.
      */
     GASOLINE("GASOLINE", "4"),
+    NULL("null", "5"),
     /**
      * Nuclear fuel type.
      */
-    NUCLEAR("NUCLEAR", "5");
+    NUCLEAR("NUCLEAR", "6");
 
     private final String name, order;
 
@@ -81,4 +82,5 @@ public enum FuelType {
     public String getOrder() {
         return order;
     }
+
 }

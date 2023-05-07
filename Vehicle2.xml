@@ -29,6 +29,5 @@
         <enginePower>2000</enginePower>
         <type>TRUCK</type>
         <fuelType>DIESEL</fuelType>
-
     </vehicle>
 </vehicles>

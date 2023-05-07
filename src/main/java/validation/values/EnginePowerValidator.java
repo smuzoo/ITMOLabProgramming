@@ -18,14 +18,14 @@ public class EnginePowerValidator extends Validator {
         this.enginePower = enginePower;
     }
 
-    private boolean isNotCanTransformEnginePower() {
+    /*private boolean isNotCanTransformEnginePower() {
         try {
             Long.parseLong(enginePower);
         } catch (NumberFormatException e) {
             return true;
         }
         return false;
-    }
+    }*/
 
     private boolean isLowerEnginePower() {
         return Long.parseLong(enginePower) < 0;
@@ -34,7 +34,7 @@ public class EnginePowerValidator extends Validator {
 
     @Override
     protected void addAllErrors() {
-        addError(this::isNotCanTransformEnginePower, Errors.NOTCANTRANSFORMTOLONG);
+        //addError(this::isNotCanTransformEnginePower, Errors.NOTCANTRANSFORMTOLONG);
         addError(this::isLowerEnginePower, Errors.ENGINEPOWERLOWERZERO);
 
     }
