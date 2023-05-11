@@ -194,6 +194,11 @@ public class Vehicle {
         }
     }
 
+    /**
+     * Gets engine power as string.
+     *
+     * @return the engine power as string
+     */
     public String getEnginePowerAsString() {
         return (enginePower != null) ? enginePower.toString() : "";
     }

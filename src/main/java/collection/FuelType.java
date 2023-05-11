@@ -22,6 +22,9 @@ public enum FuelType {
      * Gasoline fuel type.
      */
     GASOLINE("GASOLINE", "4"),
+    /**
+     * Null fuel type.
+     */
     NULL("null", "5"),
     /**
      * Nuclear fuel type.

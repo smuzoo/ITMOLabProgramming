@@ -61,7 +61,7 @@ public class ParserFromFileToCollection {
                     try {
                         type = VehicleType.valueOf(element.getElementsByTagName("type").item(0).getTextContent());
                     } catch (IllegalArgumentException e) {
-                        System.out.println("Значение VehicleType неверно, было присвоено значение null "+Errors.INCORRECTENUMFORMATFROMFILE);
+                        System.out.println("Значение VehicleType неверно, было присвоено значение null " + Errors.INCORRECTENUMFORMATFROMFILE);
                     }
 
                     FuelType fuelType = null;
@@ -70,11 +70,9 @@ public class ParserFromFileToCollection {
                         try {
                             fuelType = FuelType.valueOf(fuelTypeStr);
                         } catch (IllegalArgumentException e) {
-                            System.out.println("Значение FuelType неверно, было присвоено значение null "+Errors.INCORRECTENUMFORMATFROMFILE);
+                            System.out.println("Значение FuelType неверно, было присвоено значение null " + Errors.INCORRECTENUMFORMATFROMFILE);
                         }
                     }
-
-
                     String key = element.getElementsByTagName("key").item(0).getTextContent();
                     Vehicle vehicle = new Vehicle(UUID.randomUUID(), name, coordinates, enginePower, type, fuelType);
                     vehicles.put(key, vehicle);
@@ -88,12 +86,14 @@ public class ParserFromFileToCollection {
             System.out.println(Errors.IMPOSSIBLEPARSERCONFIGURATIONFROMFILE);
         } catch (NumberFormatException e) {
             System.out.println(Errors.INCORRECTNUMBERFORMATFROMFILE);
-        /*} catch (IllegalArgumentException e) {
-            System.out.println(Errors.INCORRECTENUMFORMATFROMFILE);*/
-
+        } catch (NullPointerException e) {
+            System.out.println(Errors.NOTENOUGHPARAMETRS);
         }
+        /*} catch (IllegalArgumentException e) {
+            System.out.println(Errors.INCORRECTENUMFORMATFROMFILE);}*/
 
         return vehicles;
     }
 
 }
+

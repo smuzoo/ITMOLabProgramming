@@ -102,7 +102,11 @@ public enum Errors {
     /**
      * Recursion errors.
      */
-    RECURSION("В скрипте присутствует рекурсия");
+    RECURSION("В скрипте присутствует рекурсия"),
+    /**
+     * Notenoughparametrs errors.
+     */
+    NOTENOUGHPARAMETRS("Неверная структура файла, нехватает какого-то необходимого параметра или параметров");
 
 
     private final String error;
