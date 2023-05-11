@@ -92,7 +92,7 @@ public class Vehicle {
     public String toString() {
         return "\n" + "Vehicle " + id + "\n" +
                 "name = " + name + "\n" +
-                "coordinates = " + coordinates.getX() + "; " + coordinates.getX() + "\n" +
+                "coordinates = " + coordinates.getX() + "; " + coordinates.getY() + "\n" +
                 "creationDate = " + creationDate + "\n" +
                 "enginePower = " + enginePower + "\n" +
                 "type = " + vehicleType + "\n" +
