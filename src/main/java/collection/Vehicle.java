@@ -195,22 +195,21 @@ public class Vehicle {
     }
 
     /**
-     * Gets engine power as string.
-     *
-     * @return the engine power as string
-     */
-    public String getEnginePowerAsString() {
-        return (enginePower != null) ? enginePower.toString() : "";
-    }
-
-
-    /**
      * Sets engine power.
      *
      * @param enginePower the engine power
      */
     public void setEnginePower(Long enginePower) {
         this.enginePower = enginePower;
+    }
+
+    /**
+     * Gets engine power as string.
+     *
+     * @return the engine power as string
+     */
+    public String getEnginePowerAsString() {
+        return (enginePower != null) ? enginePower.toString() : "";
     }
 
     /**
@@ -241,10 +240,10 @@ public class Vehicle {
      * @return the fuel type
      */
     public FuelType getFuelType() {
-        if(fuelType == null){
-        return FuelType.NULL;
+        if (fuelType == null) {
+            return FuelType.NULL;
 
-        }else{
+        } else {
             return fuelType;
         }
 
@@ -405,8 +404,6 @@ public class Vehicle {
         }
         return false;
     }
-
-
 
 
 }

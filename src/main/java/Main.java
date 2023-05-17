@@ -7,7 +7,6 @@ import validation.env.EnvValidator;
 import validation.file.FileToReadWriteValidator;
 
 import java.io.File;
-import java.security.NoSuchProviderException;
 import java.util.NoSuchElementException;
 
 
@@ -37,11 +36,11 @@ public class Main {
             while (!((request = parser.getNewLine()).equals("exit"))) {
                 commandController.executeCommand(request);
             }
-        }catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             System.out.println("Неверный ввод, выход из программы");
         }
-        }
-
-
     }
+
+
+}
 

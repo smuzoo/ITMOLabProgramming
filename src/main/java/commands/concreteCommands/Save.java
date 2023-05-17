@@ -43,7 +43,7 @@ public class Save implements Command {
                 writer.println("    </coordinates>");
                 writer.println("    <enginePower>" + vehicle.getEnginePowerAsString() + "</enginePower>");
                 writer.println("    <type>" + vehicle.getVehicleType().toString() + "</type>");
-                writer.println("    <fuelType>" + vehicle.getFuelType().toString()+ "</fuelType>");
+                writer.println("    <fuelType>" + vehicle.getFuelType().toString() + "</fuelType>");
                 writer.println("    <key>" + VehicleCollection.keySet().stream().filter(key -> VehicleCollection.getVehicleHashMapCollection().get(key).equals(vehicle)).toArray()[0] + "</key>");
                 writer.println("  </vehicle>");
             });
