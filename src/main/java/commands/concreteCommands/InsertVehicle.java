@@ -39,7 +39,6 @@ public class InsertVehicle implements Command {
                 vehicle.setId(UUID.randomUUID());
                 VehicleCollection.add(key, vehicle);
                 System.out.println("Элемент успешно добавлен в коллекцию");
-
             }
         }
 

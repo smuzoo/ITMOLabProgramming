@@ -95,7 +95,7 @@ public class Authentication {
     private static void register(String login, String password) {
         Database database = Database.getInstance();
         if(database.isExistInDB(NAME_TABLE, "login", login)){
-            System.err.println("Данное имя пользователя уже существует");
+            System.err.println("Такое имя пользователя уже существует");
             auth();
         }else{
             String pepper = "hAV~2z)(()fdgfg";

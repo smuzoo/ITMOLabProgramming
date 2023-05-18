@@ -1,7 +1,11 @@
 package collection;
 
+import dataBase.Database;
 import parsers.ParserFromFileToCollection;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -15,6 +19,7 @@ public class VehicleCollection {
      */
     public static Map<String, Vehicle> vehicleHashMapCollection = new LinkedHashMap<>();
     private static Date dateOfLastChange = new Date();
+
 
 
     /**
@@ -49,6 +54,10 @@ public class VehicleCollection {
     public static void remove(String key) {
         dateOfLastChange = new Date();
         vehicleHashMapCollection.remove(key);
+    }
+
+    public static void addVehicle(String key, Vehicle vehicle){
+        VehicleCollection.add(key, vehicle);
     }
 
     /**
@@ -125,7 +134,7 @@ public class VehicleCollection {
     }
 
     /**
-     * Get entry set set.
+     * Get entry set.
      *
      * @return the set
      */
@@ -143,6 +152,36 @@ public class VehicleCollection {
         dateOfLastChange = new Date();
         vehicleHashMapCollection.put(key, vehicle);
     }
+    public static void readFromDatabase() {
+        Database db = Database.getInstance();
+        ResultSet vehicleObject = db.getVehicles(); // Предположим, что у вас есть метод getVehicles() для получения данных о транспортных средствах из базы данных
+        try {
+            while (vehicleObject.next()) {
+                Long id = vehicleObject.getLong("id");
+                String name = vehicleObject.getString("name");
+                LocalDateTime creationDate = vehicleObject.getTimestamp("creation_date").toLocalDateTime();
+                int x = vehicleObject.getInt("coordinate_x");
+                double y = vehicleObject.getDouble("coordinate_y");
+                Long enginePower = vehicleObject.getLong("engine_power");
+                VehicleType vehicleType = VehicleType.valueOf(vehicleObject.getString("vehicle_type"));
+                FuelType fuelType = FuelType.valueOf(vehicleObject.getString("fuel_type"));
+                UUID uuid = UUID.fromString(vehicleObject.getString("uuid"));
+                String key = vehicleObject.getString("key");
+
+                // Создание объекта Vehicle и добавление его в нужное место (например, в коллекцию)
+
+                Vehicle vehicle = new Vehicle(uuid, name, new Coordinates(x, y), enginePower, vehicleType, fuelType);
+                addVehicle(key, vehicle); // Предположим, что у вас есть метод addVehicle(), который добавляет объект Vehicle в коллекцию или другую структуру данных
+
+                db.closeConnection();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
 }
 
 
