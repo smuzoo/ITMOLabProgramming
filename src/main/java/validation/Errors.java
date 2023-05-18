@@ -106,7 +106,8 @@ public enum Errors {
     /**
      * Notenoughparametrs errors.
      */
-    NOTENOUGHPARAMETRS("Неверная структура файла, нехватает какого-то необходимого параметра или параметров");
+    NOTENOUGHPARAMETRS("Неверная структура файла, нехватает какого-то необходимого параметра или параметров"),
+    ISNOTEXISTENTOPTION("Данного варианта не существует");
 
 
     private final String error;
