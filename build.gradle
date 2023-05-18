@@ -25,9 +25,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-application {
-    mainClassName = 'Main'
-}
+
 
 jar {
     manifest {
@@ -42,6 +40,4 @@ jar {
 }
 
 
-test {
-    useJUnitPlatform()
-}
+
