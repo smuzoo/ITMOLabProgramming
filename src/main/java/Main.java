@@ -1,3 +1,4 @@
+import authorization.Authentication;
 import collection.VehicleCollection;
 import commands.CommandController;
 import org.jetbrains.annotations.NotNull;
@@ -23,13 +24,9 @@ public class Main {
 
 
         try {
-            EnvValidator envValidator = new EnvValidator(args.length);
-            envValidator.validateWithExit();
-            final String FILEPATH = args[0];
-            FileToReadWriteValidator fileValidatorToReadAndWrite = new FileToReadWriteValidator(new File(FILEPATH));
-            fileValidatorToReadAndWrite.validateWithExit();
-            FileConstant.setFilePath(FILEPATH);
-            VehicleCollection.read(FILEPATH);
+            VehicleCollection.readFromDatabase();
+            Authentication.setReader(new ConsoleParser());
+            Authentication.auth();
             ConsoleParser parser = new ConsoleParser();
             CommandController commandController = new CommandController(parser);
             String request;
