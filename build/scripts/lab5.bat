@@ -63,7 +63,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\lab5-1.0.jar;%APP_HOME%\lib\annotations-20.1.0.jar
+set CLASSPATH=%APP_HOME%\lib\lab5-1.0.jar;%APP_HOME%\lib\annotations-20.1.0.jar;%APP_HOME%\lib\postgresql-42.6.0.jar;%APP_HOME%\lib\checker-qual-3.31.0.jar
 
 @rem Execute lab5
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %LAB5_OPTS%  -classpath "%CLASSPATH%" Main %CMD_LINE_ARGS%

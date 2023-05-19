@@ -21,9 +21,13 @@ public class Database {
 
         try {
             // Подключаемся к базе данных
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
-            System.err.println("Ошибка подключения к базе данных: " + e.getMessage());
+            //System.err.println("Ошибка подключения к базе данных: " + e.getMessage());
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -100,11 +104,11 @@ public class Database {
 
     public ResultSet executePrepareStatement(String sqlRequest, String... values) {
         try {
-            PreparedStatement psmt = connection.prepareStatement(sqlRequest);
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlRequest);
             for (int i = 0; i < values.length; i++) {
-                psmt.setString(i + 1, values[i]);
+                preparedStatement.setString(i + 1, values[i]);
             }
-            return psmt.executeQuery();
+            return preparedStatement.executeQuery();
         } catch (SQLException e) {
             return null;
         }
@@ -112,8 +116,8 @@ public class Database {
 
     public int truncateTable(String table) {
         String sqlRequest = "TRUNCATE TABLE " + table;
-        try (Statement smt = connection.createStatement()) {
-            return smt.executeUpdate(sqlRequest);
+        try (Statement statement = connection.createStatement()) {
+            return statement.executeUpdate(sqlRequest);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -137,10 +141,5 @@ public class Database {
             System.err.println("Ошибка закрытия соединения с базой данных: " + e.getMessage());
         }
     }
-
-
-
-
-
 }
 

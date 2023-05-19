@@ -153,8 +153,8 @@ public class VehicleCollection {
         vehicleHashMapCollection.put(key, vehicle);
     }
     public static void readFromDatabase() {
-        Database db = Database.getInstance();
-        ResultSet vehicleObject = db.getVehicles(); // Предположим, что у вас есть метод getVehicles() для получения данных о транспортных средствах из базы данных
+        Database database = Database.getInstance();
+        ResultSet vehicleObject = database.getVehicles();
         try {
             while (vehicleObject.next()) {
                 Long id = vehicleObject.getLong("id");
@@ -173,7 +173,7 @@ public class VehicleCollection {
                 Vehicle vehicle = new Vehicle(uuid, name, new Coordinates(x, y), enginePower, vehicleType, fuelType);
                 addVehicle(key, vehicle); // Предположим, что у вас есть метод addVehicle(), который добавляет объект Vehicle в коллекцию или другую структуру данных
 
-                db.closeConnection();
+                database.closeConnection();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
