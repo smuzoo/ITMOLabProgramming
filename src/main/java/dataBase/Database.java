@@ -117,13 +117,11 @@ public class Database {
         String sqlRequest = "INSERT INTO " + table + " (id, name, coordinate_x, coordinate_y, creation_date, engine_power, " +
                 "vehicle_type, fuel_type, user_login, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Database database = Database.getInstance();
+        Connection connection = database.connection ;
+        PreparedStatement preparedStatement;
 
         try {
-            Database db = Database.getInstance();
-            connection = db.getConnection(); // Obtain the database connection
             preparedStatement = connection.prepareStatement(sqlRequest);
             preparedStatement.setLong(1, vehicleId);
             preparedStatement.setString(2, name);
@@ -143,22 +141,6 @@ public class Database {
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-
-                }
-            }
         }
     }
 
