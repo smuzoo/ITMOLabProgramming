@@ -1,5 +1,6 @@
 package commands.concreteCommands;
 
+import authorization.User;
 import collection.Vehicle;
 import collection.VehicleCollection;
 import collection.edit.VehicleCreate;
@@ -40,6 +41,7 @@ public class InsertVehicle implements Command {
                 Vehicle vehicle = vehicleCreate.create();
                 vehicle.setUUID(UUID.randomUUID());
                 vehicle.setKey(keyArgument);
+                vehicle.setUserLogin(User.getLogin());
                 Database dataBase = Database.getInstance();
                 ResultSet resultSet = dataBase.getNewId("vehicle_sequence");
                 Long id = null;

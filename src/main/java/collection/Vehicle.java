@@ -125,12 +125,14 @@ public class Vehicle {
     public String toString() {
         return "\n" + "Vehicle " + uuid + "\n" +
                 "ID = " + id +"\n" +
+                "Key = " + key +"\n" +
                 "name = " + name + "\n" +
                 "coordinates = " + coordinates.getX() + "; " + coordinates.getY() + "\n" +
                 "creationDate = " + creationDate + "\n" +
                 "enginePower = " + enginePower + "\n" +
                 "type = " + vehicleType + "\n" +
-                "fuelType = " + fuelType;
+                "fuelType = " + fuelType +"\n" +
+                "userLogin = " + userLogin;
     }
 
     /**

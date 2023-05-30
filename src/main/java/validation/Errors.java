@@ -107,7 +107,12 @@ public enum Errors {
      * Notenoughparametrs errors.
      */
     NOTENOUGHPARAMETRS("Неверная структура файла, нехватает какого-то необходимого параметра или параметров"),
-    ISNOTEXISTENTOPTION("Данного варианта не существует");
+    ISNOTEXISTENTOPTION("Данного варианта не существует"),
+    NOTHASARGUMENT("Данная команда принимает на вход 1 аргумент"),
+    NOTCANTRANSFORMTOUUID("Невозможно преобразовать данный ключ к типу UUID"),
+    WRONGKEY("Неправильный ключ"),
+    NOTHASELEMENT("Элемента с таким ключом не существует в коллекции"),
+    NOTCREATETHISUSER("Данный объект был создан другим пользователем"+"\n"+"Вы не можете его модифицировать");
 
 
     private final String error;

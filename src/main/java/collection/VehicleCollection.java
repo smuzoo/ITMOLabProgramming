@@ -177,6 +177,14 @@ public class VehicleCollection {
     }
 
 
+    public boolean containsKey(String key) {
+        return keySet().stream().anyMatch(mapKey -> mapKey.equals(key));
+    }
+
+
+    public static Vehicle getVehicle(String key) {
+        return vehicleHashMapCollection.get(key);
+    }
 }
 
 

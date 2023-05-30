@@ -93,25 +93,6 @@ public class Database {
                 vehicle.getVehicleType(), vehicle.getFuelType(), vehicle.getUserLogin(), vehicle.getUuid(), vehicle.getKey());
     }
 
-    /*private int addNewVehicle(String table, String name, int x, double y, LocalDateTime creationDate,
-                              Long enginePower, VehicleType vehicleType, FuelType fuelType, UUID id, String key) {
-        String sqlRequest = "INSERT INTO " + table + " (name, coordinate_x, coordinate_y, creation_date, engine_power, " +
-                "vehicle_type, fuel_type, uuid, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlRequest)) {
-            preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, x);
-            preparedStatement.setDouble(3, y);
-            preparedStatement.setTimestamp(4, Timestamp.valueOf(creationDate));
-            preparedStatement.setLong(5, enginePower);
-            preparedStatement.setString(6, vehicleType != null ? vehicleType.toString() : null);
-            preparedStatement.setString(7, fuelType != null ? fuelType.toString() : null);
-            preparedStatement.setObject(8, id);
-            preparedStatement.setString(9, key);
-            return preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
     private int addNewVehicle(String table, Long vehicleId, String name, int x, double y, LocalDateTime creationDate,
                               Long enginePower, VehicleType vehicleType, FuelType fuelType, String userLogin, UUID id, String key) {
         String sqlRequest = "INSERT INTO " + table + " (id, name, coordinate_x, coordinate_y, creation_date, engine_power, " +
@@ -171,9 +152,19 @@ public class Database {
 
     public int deleteById(String table, UUID id) {
         String sqlRequest = "DELETE FROM " + table + " WHERE uuid = ?";
-        try (PreparedStatement psmt = connection.prepareStatement(sqlRequest)) {
-            psmt.setObject(1, id);
-            return psmt.executeUpdate();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlRequest)) {
+            preparedStatement.setObject(1, id);
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int deleteByKey(String table, String key) {
+        String sqlRequest = "DELETE FROM " + table + " WHERE key = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlRequest)) {
+            preparedStatement.setObject(1, key);
+            return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

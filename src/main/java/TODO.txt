@@ -17,3 +17,6 @@ id всегда генерируется сам
 
 лямбда выражение? как
  addError(() -> validateOnHaveEnvironment()
+
+ remove_key
+ERROR: relation "human_beings" does not exist
