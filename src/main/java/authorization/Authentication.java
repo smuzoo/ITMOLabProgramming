@@ -9,21 +9,22 @@ import validation.values.NotEqualsValidator;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Base64;
-import java.nio.charset.StandardCharsets;
 
 
 public class Authentication {
     private static ConsoleParser parser;
 
-    final private static String NAME_TABLE = "users";
+    final private static String name_table = "name_table";
 
     public static void auth() {
         String action;
         do{
-            System.out.println("Введите 1 если хотите зарегистрироваться, 2 если войти, 3, если войти гостем, 4 если выйти");
+            System.out.println("Введите 1 если хотите зарегистрироваться" + "\n"+
+                    "2, если войти " +"\n"+
+                    "3, если войти гостем " +"\n"+
+                    "4, если выйти");
             action = parser.getNewLine();
         }while (!(new NotEqualsValidator(action, "1", "2", "3", "4").isValid()));
         if(action.equals("4")){
@@ -63,18 +64,18 @@ public class Authentication {
 
     private static void login(String login, String password) {
         Database database = Database.getInstance();
-        if (!database.isExistInDB(NAME_TABLE, "login", login)) {
-            System.err.println("Данного имя пользователя не существует");
+        if (!database.isExistInDB(name_table, "login", login)) {
+            System.err.println("Данного пользователя не существует");
             auth();
         } else {
-            String pepper = "hAV~2zRmv#";
-            String salt = database.getFieldByField(NAME_TABLE, "login", login, "salt");
+            String pepper = "HHGHJ12-231dd";
+            String salt = database.getFieldByField(name_table, "login", login, "salt");
             try {
-                MessageDigest messageDigest = MessageDigest.getInstance("MD2");
+                MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
                 byte[] hash = messageDigest.digest(
                         (pepper + password + salt).getBytes(StandardCharsets.UTF_8));
-                String hashUser = Arrays.toString(hash);
-                String hashDB = database.getFieldByField(NAME_TABLE, "login", login, "hash");
+                String hashUser = bytesToHexString(hash);
+                String hashDB = database.getFieldByField(name_table, "login", login, "hash");
                 if (hashUser.equals(hashDB)) {
                     User.setLogin(login);
                     User.setPassword(password);
@@ -85,40 +86,38 @@ public class Authentication {
                 }
             } catch (NoSuchAlgorithmException ex) {
                 ex.printStackTrace();
-            } finally {
-                database.closeConnection();
             }
         }
-        database.closeConnection();
     }
 
+    private static String bytesToHexString(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
+    }
     private static void register(String login, String password) {
         Database database = Database.getInstance();
-        if(database.isExistInDB(NAME_TABLE, "login", login)){
+        if(database.isExistInDB(name_table, "login", login)){
             System.err.println("Такое имя пользователя уже существует");
             auth();
         }else{
-            String pepper = "hAV~2z)(()fdgfg";
+            String pepper = "HHGHJ12-231dd";
             String salt = getRandomString();
             try {
                 MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
                 byte[] hash = messageDigest.digest(
                         (pepper + password + salt).getBytes(StandardCharsets.UTF_8));
-                String hashString = Base64.getEncoder().encodeToString(hash);
-                database.addUserToDB(NAME_TABLE, login, salt, hashString);
-
+                String hashString = bytesToHexString(hash);;
+                database.addUserToDB(name_table, login, salt, hashString);
                 User.setLogin(login);
                 User.setPassword(password);
                 System.out.println("Вы были успешно зарегистрированы");
             }catch (NoSuchAlgorithmException ex){
                 ex.printStackTrace();
-            }finally {
-                database.closeConnection();
             }
-
         }
-        database.closeConnection();
-
     }
 
     public static void setReader(ConsoleParser parser) {

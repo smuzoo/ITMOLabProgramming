@@ -31,6 +31,17 @@ public class Database {
         }
     }
 
+    public Connection getConnection() {
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            }
+            return connection;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to establish a database connection.", e);
+        }
+    }
+
     public static synchronized Database getInstance() {
         if (instance == null) {
             instance = new Database();
@@ -77,30 +88,81 @@ public class Database {
     }
 
     public int addVehicleToDatabase(String table, Vehicle vehicle) {
-        return addNewVehicle(table, vehicle.getName(), vehicle.getCoordinates().getX(),
+        return addNewVehicle(table,vehicle.getId(), vehicle.getName(), vehicle.getCoordinates().getX(),
                 vehicle.getCoordinates().getY(), vehicle.getCreationDate(), vehicle.getEnginePower(),
-                vehicle.getVehicleType(), vehicle.getFuelType(), vehicle.getId(), vehicle.getKey());
+                vehicle.getVehicleType(), vehicle.getFuelType(), vehicle.getUserLogin(), vehicle.getUuid(), vehicle.getKey());
     }
 
-    private int addNewVehicle(String table, String name, int x, double y, LocalDateTime creationDate,
+    /*private int addNewVehicle(String table, String name, int x, double y, LocalDateTime creationDate,
                               Long enginePower, VehicleType vehicleType, FuelType fuelType, UUID id, String key) {
         String sqlRequest = "INSERT INTO " + table + " (name, coordinate_x, coordinate_y, creation_date, engine_power, " +
                 "vehicle_type, fuel_type, uuid, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement psmt = connection.prepareStatement(sqlRequest)) {
-            psmt.setString(1, name);
-            psmt.setInt(2, x);
-            psmt.setDouble(3, y);
-            psmt.setTimestamp(4, Timestamp.valueOf(creationDate));
-            psmt.setLong(5, enginePower);
-            psmt.setString(6, vehicleType != null ? vehicleType.toString() : null);
-            psmt.setString(7, fuelType != null ? fuelType.toString() : null);
-            psmt.setObject(8, id);
-            psmt.setString(9, key);
-            return psmt.executeUpdate();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlRequest)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, x);
+            preparedStatement.setDouble(3, y);
+            preparedStatement.setTimestamp(4, Timestamp.valueOf(creationDate));
+            preparedStatement.setLong(5, enginePower);
+            preparedStatement.setString(6, vehicleType != null ? vehicleType.toString() : null);
+            preparedStatement.setString(7, fuelType != null ? fuelType.toString() : null);
+            preparedStatement.setObject(8, id);
+            preparedStatement.setString(9, key);
+            return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }*/
+    private int addNewVehicle(String table, Long vehicleId, String name, int x, double y, LocalDateTime creationDate,
+                              Long enginePower, VehicleType vehicleType, FuelType fuelType, String userLogin, UUID id, String key) {
+        String sqlRequest = "INSERT INTO " + table + " (id, name, coordinate_x, coordinate_y, creation_date, engine_power, " +
+                "vehicle_type, fuel_type, user_login, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            Database db = Database.getInstance();
+            connection = db.getConnection(); // Obtain the database connection
+            preparedStatement = connection.prepareStatement(sqlRequest);
+            preparedStatement.setLong(1, vehicleId);
+            preparedStatement.setString(2, name);
+            preparedStatement.setInt(3, x);
+            preparedStatement.setDouble(4, y);
+            preparedStatement.setTimestamp(5, Timestamp.valueOf(creationDate));
+            if (enginePower != null) {
+                preparedStatement.setLong(6, enginePower);
+            } else {
+                preparedStatement.setNull(6, Types.BIGINT); // Set NULL for engine_power
+            }
+            preparedStatement.setString(7, vehicleType != null ? vehicleType.toString() : null);
+            preparedStatement.setString(8, fuelType != null ? fuelType.toString() : null);
+            preparedStatement.setString(9, userLogin);
+            preparedStatement.setString(10, key);
+
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+
+                }
+            }
+        }
     }
+
+
 
     public ResultSet executePrepareStatement(String sqlRequest, String... values) {
         try {
@@ -110,6 +172,8 @@ public class Database {
             }
             return preparedStatement.executeQuery();
         } catch (SQLException e) {
+            String sqlState = e.getSQLState();
+            System.err.println("SQL state: " + sqlState);
             return null;
         }
     }

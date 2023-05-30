@@ -1,9 +1,12 @@
 package commands;
 
 
+import authorization.Authentication;
+import authorization.User;
 import commands.concreteCommands.*;
 import commands.concreteCommands.ExecuteScript.ExecuteScript;
 import parsers.Parsing;
+import validation.values.NotEqualsValidator;
 
 import java.util.HashMap;
 import java.util.List;
@@ -55,11 +58,24 @@ public class CommandController {
         final String commandName = commandWithArgument.length > 0 ? commandWithArgument[0] : "";
         final String argument = commandWithArgument.length > 1 ? commandWithArgument[1] : "";
         Command command = getCommand(commandName);
+        if (!User.isLogin()) {
+            String action;
+            System.out.println("У вас нет доступа к командам, т.к. вы не вошли в систему");
+            do {
+                System.out.println("Хотите войти в систему? +" +
+                        "\n"+ "(y/n/exit)");
+                action = parsing.getNewLine();
+            }while (!(new NotEqualsValidator(action, "y", "n", "exit").isValid()));
+            if(action.equals("y")) Authentication.auth();
+            else if (action.equals("exit")) System.exit(0);
+
+        }
         if (command == null) System.out.println("Нет такой команды");
         else {
             command.execute(argument);
         }
     }
+
 
     private void initialization() {
         addCommand("info", new Info());

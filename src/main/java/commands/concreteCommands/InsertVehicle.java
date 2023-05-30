@@ -4,9 +4,12 @@ import collection.Vehicle;
 import collection.VehicleCollection;
 import collection.edit.VehicleCreate;
 import commands.Command;
+import dataBase.Database;
 import parsers.Parsing;
 import validation.values.KeyValidator;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.UUID;
 
 /**
@@ -25,20 +28,35 @@ public class InsertVehicle implements Command {
     }
 
     @Override
-    public void execute(String idArgument) {
+    public void execute(String keyArgument) {
         VehicleCreate vehicleCreate = new VehicleCreate(parser);
-        final String newKey = idArgument;
-        if (VehicleCollection.keySet().stream().anyMatch(key -> key.equals(newKey))) {
-            System.out.println("Элемент с таким ключом уже есть");
-        } else {
-            KeyValidator keyValidator = new KeyValidator(idArgument);
-            if (keyValidator.isValid()) {
-
-                String key = idArgument;
+        final String newKey = keyArgument;
+        KeyValidator keyValidator = new KeyValidator(keyArgument);
+        if (keyValidator.isValid()) {
+            if (VehicleCollection.keySet().stream().anyMatch(key -> key.equals(newKey))) {
+                System.out.println("Элемент с таким ключом уже есть");
+            } else {
+                String key = keyArgument;
                 Vehicle vehicle = vehicleCreate.create();
-                vehicle.setId(UUID.randomUUID());
-                VehicleCollection.add(key, vehicle);
-                System.out.println("Элемент успешно добавлен в коллекцию");
+                vehicle.setUUID(UUID.randomUUID());
+                Database dataBase = Database.getInstance();
+                ResultSet resultSet = dataBase.getNewId("vehicle_sequence");
+                Long id = null;
+                try {
+                    resultSet.next();
+                    id = resultSet.getLong(1);
+                } catch (SQLException e) {
+                    System.err.println(e.getMessage());
+                }
+                vehicle.setId(id);
+                int update = dataBase.addVehicleToDatabase("vehicles", vehicle);
+
+
+                if (update > 0) {
+                    VehicleCollection.add(key, vehicle);
+
+                    System.out.println("Элемент успешно добавлен в коллекцию");
+                }
             }
         }
 

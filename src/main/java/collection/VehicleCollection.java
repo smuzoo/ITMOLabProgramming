@@ -167,13 +167,8 @@ public class VehicleCollection {
                 FuelType fuelType = FuelType.valueOf(vehicleObject.getString("fuel_type"));
                 UUID uuid = UUID.fromString(vehicleObject.getString("uuid"));
                 String key = vehicleObject.getString("key");
-
-                // Создание объекта Vehicle и добавление его в нужное место (например, в коллекцию)
-
                 Vehicle vehicle = new Vehicle(uuid, name, new Coordinates(x, y), enginePower, vehicleType, fuelType);
-                addVehicle(key, vehicle); // Предположим, что у вас есть метод addVehicle(), который добавляет объект Vehicle в коллекцию или другую структуру данных
-
-                database.closeConnection();
+                addVehicle(key, vehicle);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

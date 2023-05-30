@@ -1,6 +1,11 @@
-private final Scanner scanner = new Scanner(System.in);
-что такое System.in??
-петя, [20.04.2023 20:44]
+сделать  таблицу  в studs
+(зайти в них)
+psql -d studs
+сделать ее по моему Vehicle
+INSERT INTO Vehicles VALUES (1,'Vehicle 1', 10, 20.5, current_timestamp, 1000, 'Car', 'Gasoline', 'john.doe');
+
+
+
 ключ и id - разыные\
 
 петя, [20.04.2023 20:44]

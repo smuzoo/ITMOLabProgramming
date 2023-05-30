@@ -21,8 +21,6 @@ public class Main {
      * @param args the args
      */
     public static void main(String[] args) {
-
-
         try {
             VehicleCollection.readFromDatabase();
             Authentication.setReader(new ConsoleParser());

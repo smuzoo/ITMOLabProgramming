@@ -34,7 +34,7 @@ public class ReplaceIfLower implements Command {
                 RemoveKey removeKey = new RemoveKey();
                 removeKey.execute(argument);
                 vehicle.setKey(argument);
-                vehicle.setId(UUID.randomUUID());
+                vehicle.setUUID(UUID.randomUUID());
                 VehicleCollection.add(argument, vehicle);
             }
         } catch (NullPointerException e) {

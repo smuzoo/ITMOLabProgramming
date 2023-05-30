@@ -1,6 +1,7 @@
 package collection;
 
 
+import authorization.User;
 import validation.values.CoordinatesValidator;
 import validation.values.EnginePowerValidator;
 import validation.values.NameValidator;
@@ -30,8 +31,10 @@ public class Vehicle {
     private Long enginePower; //Поле может быть null, Значение поля должно быть больше 0
     private VehicleType vehicleType; //Поле может быть null
     private FuelType fuelType; //Поле может быть null
-    private UUID id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private UUID uuid;//Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String key;
+    private Long id;
+    private String userLogin;
 
     {
         addNotNullSetter(Fields.NAME, this::setNotNullName);
@@ -60,14 +63,33 @@ public class Vehicle {
         this.enginePower = enginePower;
         this.vehicleType = vehicleType;
         this.fuelType = fuelType;
-        this.id = id;
+        this.uuid = id;
+    }
+    public Vehicle(UUID uuid, String name, Coordinates coordinates, Long enginePower, VehicleType vehicleType, FuelType fuelType, String userLogin) {
+        this.name = name;
+        this.coordinates = coordinates;
+        creationDate = LocalDateTime.now();
+        this.enginePower = enginePower;
+        this.vehicleType = vehicleType;
+        this.fuelType = fuelType;
+        this.uuid = uuid;
+        this.userLogin = userLogin;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 
     /**
      * Instantiates a new Vehicle.
      */
-    public Vehicle() {
-        this.creationDate = LocalDateTime.now();
+    public Vehicle(){
+        this.creationDate=LocalDateTime.now();
+        this.userLogin = User.getLogin();
     }
 
     /**
@@ -90,7 +112,7 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "\n" + "Vehicle " + id + "\n" +
+        return "\n" + "Vehicle " + uuid + "\n" +
                 "name = " + name + "\n" +
                 "coordinates = " + coordinates.getX() + "; " + coordinates.getY() + "\n" +
                 "creationDate = " + creationDate + "\n" +
@@ -113,8 +135,36 @@ public class Vehicle {
      *
      * @return the id
      */
-    public UUID getId() {
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -122,8 +172,8 @@ public class Vehicle {
      *
      * @param id the id
      */
-    public void setId(UUID id) {
-        this.id = id;
+    public void setUUID(UUID id) {
+        this.uuid = id;
     }
 
     /**
