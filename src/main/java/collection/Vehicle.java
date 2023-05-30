@@ -49,21 +49,23 @@ public class Vehicle {
     /**
      * Instantiates a new Vehicle.
      *
-     * @param id          the id
+     * @param uuid          the id
      * @param name        the name
      * @param coordinates the coordinates
      * @param enginePower the engine power
      * @param vehicleType the vehicle type
      * @param fuelType    the fuel type
      */
-    public Vehicle(UUID id, String name, Coordinates coordinates, Long enginePower, VehicleType vehicleType, FuelType fuelType) {
+    public Vehicle(Long id, UUID uuid, String name, Coordinates coordinates, Long enginePower, VehicleType vehicleType, FuelType fuelType, String key) {
         this.name = name;
         this.coordinates = coordinates;
         creationDate = LocalDateTime.now();
         this.enginePower = enginePower;
         this.vehicleType = vehicleType;
         this.fuelType = fuelType;
-        this.uuid = id;
+        this.uuid = uuid;
+        this.id = id;
+        this.key = key;
     }
     public Vehicle(UUID uuid, String name, Coordinates coordinates, Long enginePower, VehicleType vehicleType, FuelType fuelType, String userLogin) {
         this.name = name;
@@ -74,6 +76,15 @@ public class Vehicle {
         this.fuelType = fuelType;
         this.uuid = uuid;
         this.userLogin = userLogin;
+    }
+    public Vehicle(UUID uuid, String name, Coordinates coordinates, Long enginePower, VehicleType vehicleType, FuelType fuelType) {
+        this.name = name;
+        this.coordinates = coordinates;
+        creationDate = LocalDateTime.now();
+        this.enginePower = enginePower;
+        this.vehicleType = vehicleType;
+        this.fuelType = fuelType;
+        this.uuid = uuid;
     }
 
     public String getUserLogin() {
@@ -113,6 +124,7 @@ public class Vehicle {
     @Override
     public String toString() {
         return "\n" + "Vehicle " + uuid + "\n" +
+                "ID = " + id +"\n" +
                 "name = " + name + "\n" +
                 "coordinates = " + coordinates.getX() + "; " + coordinates.getY() + "\n" +
                 "creationDate = " + creationDate + "\n" +

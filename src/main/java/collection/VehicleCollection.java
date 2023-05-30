@@ -167,7 +167,7 @@ public class VehicleCollection {
                 FuelType fuelType = FuelType.valueOf(vehicleObject.getString("fuel_type"));
                 UUID uuid = UUID.fromString(vehicleObject.getString("uuid"));
                 String key = vehicleObject.getString("key");
-                Vehicle vehicle = new Vehicle(uuid, name, new Coordinates(x, y), enginePower, vehicleType, fuelType);
+                Vehicle vehicle = new Vehicle(id, uuid, name, new Coordinates(x, y), enginePower, vehicleType, fuelType, key);
                 addVehicle(key, vehicle);
             }
         } catch (SQLException e) {

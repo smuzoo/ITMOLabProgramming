@@ -39,6 +39,7 @@ public class InsertVehicle implements Command {
                 String key = keyArgument;
                 Vehicle vehicle = vehicleCreate.create();
                 vehicle.setUUID(UUID.randomUUID());
+                vehicle.setKey(keyArgument);
                 Database dataBase = Database.getInstance();
                 ResultSet resultSet = dataBase.getNewId("vehicle_sequence");
                 Long id = null;
