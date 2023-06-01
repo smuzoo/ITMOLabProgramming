@@ -32,6 +32,8 @@ public class RemoveGreater implements Command {
         Vehicle vehicle = vehicleCreate.create();
         Set<Map.Entry<String, Vehicle>> vehicleEntrySet = VehicleCollection.getEntrySet();
         //Stream<Map.Entry<String, Vehicle>> vehicleFilter =vehicleEntrySet.stream().filter().filter(vehicleInCollection -> vehicleInCollection.setValue().compareTo(vehicle) < 0 &&
+
+        //Добавить Датабазу и UserValidator
         try {
             vehicleEntrySet.removeIf(vehicleInCollection -> vehicleInCollection.getValue().compare(vehicle) < 0);
             System.out.println("Все элементы больше заданного были удалены");

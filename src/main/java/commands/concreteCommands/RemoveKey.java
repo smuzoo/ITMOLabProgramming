@@ -18,7 +18,7 @@ public class RemoveKey implements Command {
             UserVehicleValidator userVehicleValidator = new UserVehicleValidator(VehicleCollection.getVehicle(key));
             if (userVehicleValidator.isValid()) {
                 Database db = Database.getInstance();
-                int update = db.deleteByKey("human_beings", key);
+                int update = db.deleteByKey("vehicles", key);
                 if (update > 0) {
                     VehicleCollection.remove(key);
                     System.out.println("Элемент был удалён");
