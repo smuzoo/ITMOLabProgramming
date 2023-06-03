@@ -1,7 +1,6 @@
 package collection;
 
 import dataBase.Database;
-import parsers.ParserFromFileToCollection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,24 +18,6 @@ public class VehicleCollection {
      */
     public static Map<String, Vehicle> vehicleHashMapCollection = new LinkedHashMap<>();
     private static Date dateOfLastChange = new Date();
-
-
-
-    /**
-     * Read.
-     *
-     * @param FILE_PATH the file path
-     */
-    public static void read(String FILE_PATH) {
-
-        vehicleHashMapCollection = ParserFromFileToCollection.read(FILE_PATH);
-
-        /* вывести коллекцию сразу после иницилизации
-       for (Map.Entry<UUID, Vehicle> entry : vehicleHashMapCollection.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue().toString());
-        }
-        System.out.println(vehicleHashMapCollection);*/
-    }
 
     /**
      * Clear.
@@ -57,7 +38,7 @@ public class VehicleCollection {
     }
 
     public static void addVehicle(String key, Vehicle vehicle){
-        VehicleCollection.add(key, vehicle);
+        vehicleHashMapCollection.put(key, vehicle);
     }
 
     /**
@@ -167,7 +148,8 @@ public class VehicleCollection {
                 FuelType fuelType = FuelType.valueOf(vehicleObject.getString("fuel_type"));
                 UUID uuid = UUID.fromString(vehicleObject.getString("uuid"));
                 String key = vehicleObject.getString("key");
-                Vehicle vehicle = new Vehicle(id, uuid, name, new Coordinates(x, y), enginePower, vehicleType, fuelType, key);
+                String userLogin = vehicleObject.getString("user_login");
+                Vehicle vehicle = new Vehicle(id, uuid, name, new Coordinates(x, y), creationDate, enginePower, vehicleType, fuelType, key, userLogin);
                 addVehicle(key, vehicle);
             }
         } catch (SQLException e) {

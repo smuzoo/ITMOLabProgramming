@@ -1,7 +1,10 @@
 package commands.concreteCommands;
 
+import collection.Vehicle;
 import collection.VehicleCollection;
 import commands.Command;
+
+import java.util.Collection;
 
 /**
  * The type Show collection.
@@ -10,12 +13,13 @@ public class ShowCollection implements Command {
     @Override
     public void execute(String ignore) {
 
-        //Map<Key, Vehicle> vehicleCollection = VehicleCollection.getVehicleCollection();
+        Collection<Vehicle> vehicles = VehicleCollection.getVehicles();
 
-        VehicleCollection.keySet().forEach(System.out::println);
-        VehicleCollection.getVehicles().forEach(System.out::println);
-
+        for (Vehicle vehicle : vehicles) {
+            System.out.println(vehicle.toString());
+        }
     }
+
 
     @Override
     public String description() {

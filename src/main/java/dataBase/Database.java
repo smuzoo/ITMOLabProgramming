@@ -6,7 +6,9 @@ import collection.VehicleType;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class Database {
@@ -16,7 +18,8 @@ public class Database {
     String PASSWORD = config.getDatabasePassword();
     private static Database instance = null;
     private Connection connection;
-    private Map<String, Vehicle> vehicleDatabase;
+    private final Map<String, Vehicle> vehicleDatabase = new HashMap<>();
+
 
     private Database() {
 
@@ -181,16 +184,14 @@ public class Database {
         }
     }
 
-/*    public void updateDatabase(Set<Map.Entry<String, Vehicle>> vehicleEntrySet) {
-        // Clear the existing database
+    public void updateDatabase(Set<Map.Entry<String, Vehicle>> vehicleEntrySet) {
+
         vehicleDatabase.clear();
 
-        // Add the updated entries to the database
         for (Map.Entry<String, Vehicle> entry : vehicleEntrySet) {
             vehicleDatabase.put(entry.getKey(), entry.getValue());
         }
+    }
 
-        // You can also perform any other necessary operations here, such as saving to a file or sending updates to a remote database.
-    }*/
 }
 

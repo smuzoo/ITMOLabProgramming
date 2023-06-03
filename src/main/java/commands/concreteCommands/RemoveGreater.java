@@ -1,9 +1,11 @@
 package commands.concreteCommands;
 
+import authorization.User;
 import collection.Vehicle;
 import collection.VehicleCollection;
 import collection.edit.VehicleCreate;
 import commands.Command;
+import dataBase.Database;
 import parsers.Parsing;
 
 import java.util.Map;
@@ -31,16 +33,30 @@ public class RemoveGreater implements Command {
         VehicleCreate vehicleCreate = new VehicleCreate(parsing);
         Vehicle vehicle = vehicleCreate.create();
         Set<Map.Entry<String, Vehicle>> vehicleEntrySet = VehicleCollection.getEntrySet();
-        //Stream<Map.Entry<String, Vehicle>> vehicleFilter =vehicleEntrySet.stream().filter().filter(vehicleInCollection -> vehicleInCollection.setValue().compareTo(vehicle) < 0 &&
 
-        //Добавить Датабазу и UserValidator
         try {
-            vehicleEntrySet.removeIf(vehicleInCollection -> vehicleInCollection.getValue().compare(vehicle) < 0);
-            System.out.println("Все элементы больше заданного были удалены");
+            String userLogin = User.getLogin();
+            vehicleEntrySet.removeIf(vehicleInCollection -> {
+                boolean isUserVehicle = vehicleInCollection.getValue().compare(vehicle) < 0;
+                boolean isCreatedByCurrentUser = vehicleInCollection.getValue().getUserLogin().equals(userLogin);
+                return isUserVehicle && isCreatedByCurrentUser;
+            });
+
+            System.out.println("Все элементы больше заданного, созданные текущим пользователем, были удалены");
+
+            Database database = Database.getInstance();
+            for (Map.Entry<String, Vehicle> entry : vehicleEntrySet) {
+                String key = entry.getKey();
+                database.deleteByKey("vehicles", key);
+            }
+
+
+
         } catch (NullPointerException e) {
             System.out.println("У одного из сравниваемых объектов сила двигателя null, их невозможно сравнить");
         }
     }
+
 
     @Override
     public String description() {

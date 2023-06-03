@@ -67,16 +67,20 @@ public class Vehicle {
         this.id = id;
         this.key = key;
     }
-    public Vehicle(UUID uuid, String name, Coordinates coordinates, Long enginePower, VehicleType vehicleType, FuelType fuelType, String userLogin) {
+
+    public Vehicle(Long id, UUID uuid, String name, Coordinates coordinates,LocalDateTime creationDate, Long enginePower, VehicleType vehicleType, FuelType fuelType, String key, String userLogin) {
         this.name = name;
         this.coordinates = coordinates;
-        creationDate = LocalDateTime.now();
+        this.creationDate = creationDate;
         this.enginePower = enginePower;
         this.vehicleType = vehicleType;
         this.fuelType = fuelType;
         this.uuid = uuid;
+        this.id = id;
+        this.key = key;
         this.userLogin = userLogin;
     }
+
     public Vehicle(UUID uuid, String name, Coordinates coordinates, Long enginePower, VehicleType vehicleType, FuelType fuelType) {
         this.name = name;
         this.coordinates = coordinates;
