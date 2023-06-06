@@ -5,6 +5,7 @@ import collection.VehicleCollection;
 import collection.edit.VehicleCreate;
 import commands.Command;
 import parsers.Parsing;
+import validation.commands.RemoveElementValidatorKey;
 
 import java.util.UUID;
 
@@ -27,23 +28,30 @@ public class ReplaceIfGreater implements Command {
 
     @Override
     public void execute(String argument) {
-        VehicleCreate vehicleCreate = new VehicleCreate(parsing);
-        Vehicle vehicle = vehicleCreate.create();
+        RemoveElementValidatorKey removeElementValidatorKey = new RemoveElementValidatorKey(argument);
+        if (removeElementValidatorKey.isValid()) {
+            VehicleCreate vehicleCreate = new VehicleCreate(parsing);
+            Vehicle vehicle = vehicleCreate.create();
 
-        try {
-            if (VehicleCollection.getVehicleCollection().get(argument).getEnginePower() < vehicle.getEnginePower()) {
-                RemoveKey removeKey = new RemoveKey();
-                removeKey.execute(argument);
-                vehicle.setKey(argument);
-                vehicle.setUUID(UUID.randomUUID());
-                VehicleCollection.add(argument, vehicle);
+            VehicleCollection.getVehicleCollection().entrySet().stream()
+                    .filter(entry -> entry.getKey().equals(argument))
+                    .filter(entry -> entry.getValue().getEnginePower() < vehicle.getEnginePower())
+                    .findFirst()
+                    .ifPresent(entry -> {
+                        RemoveKey removeKey = new RemoveKey();
+                        removeKey.execute(entry.getKey());
+                        vehicle.setKey(entry.getKey());
+                        vehicle.setUUID(UUID.randomUUID());
+                        VehicleCollection.add(entry.getKey(), vehicle);
+                        System.out.println("Заменен объект со значением " + entry.getValue().toString());
+                    });
+
+            if (VehicleCollection.getVehicleCollection().get(argument) == null) {
+                System.out.println("Объект не заменен, так как старый больше");
             }
-        } catch (NullPointerException e) {
-            System.out.println("У одного из сравниваемых объектов сила двигателя null, их невозможно сравнить");
         }
-
-
     }
+
 
     @Override
     public String description() {

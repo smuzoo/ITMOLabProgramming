@@ -90,7 +90,7 @@ public class CommandController {
         addCommand("filer_greater_than_engine_power", new FilterGreaterThanEnginePower());
         addCommand("average_of_engine_power", new AverageOfEnginePower());
         addCommand("min_by_creation_date", new MinByCreationTime());
-        addCommand("update_id", new UpdateKey());
+        addCommand("update_key", new UpdateKey());
         addCommand("replace_if_greater", new ReplaceIfGreater(parsing));
         addCommand("replace_if_lower", new ReplaceIfLower(parsing));
 
