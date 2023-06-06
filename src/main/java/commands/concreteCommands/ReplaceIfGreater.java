@@ -4,6 +4,7 @@ import collection.Vehicle;
 import collection.VehicleCollection;
 import collection.edit.VehicleCreate;
 import commands.Command;
+import dataBase.Database;
 import parsers.Parsing;
 import validation.commands.RemoveElementValidatorKey;
 
@@ -14,14 +15,8 @@ import java.util.UUID;
  * The type Replace if greater.
  */
 public class ReplaceIfGreater implements Command {
-
     private final Parsing parsing;
 
-    /**
-     * Instantiates a new Replace if greater.
-     *
-     * @param parsing the parsing
-     */
     public ReplaceIfGreater(Parsing parsing) {
         this.parsing = parsing;
     }
@@ -38,19 +33,35 @@ public class ReplaceIfGreater implements Command {
                     .filter(entry -> entry.getValue().getEnginePower() < vehicle.getEnginePower())
                     .findFirst()
                     .ifPresent(entry -> {
-                        RemoveKey removeKey = new RemoveKey();
-                        removeKey.execute(entry.getKey());
-                        vehicle.setKey(entry.getKey());
-                        vehicle.setUUID(UUID.randomUUID());
-                        VehicleCollection.add(entry.getKey(), vehicle);
-                        System.out.println("Заменен объект со значением " + entry.getValue().toString());
+                        Vehicle currentVehicle = entry.getValue();
+
+                        // Обновление данных текущего объекта, кроме поля id
+                        currentVehicle.setKey(entry.getKey());
+                        currentVehicle.setUUID(UUID.randomUUID());
+                        System.out.println("Заменен объект со значением " + currentVehicle);
+
+                        // Обновление данных текущего объекта в базе данных
+                        Database dataBase = Database.getInstance();
+                        int update = dataBase.updateVehicleInDatabase("vehicles", currentVehicle);
+
+                        if (update > 0) {
+                            System.out.println("Данные объекта обновлены в базе данных");
+                        } else {
+                            System.out.println("Не удалось обновить данные объекта в базе данных");
+                        }
                     });
 
-            if (VehicleCollection.getVehicleCollection().get(argument) == null) {
+            if (!VehicleCollection.getVehicleCollection().containsKey(argument)) {
                 System.out.println("Объект не заменен, так как старый больше");
             }
         }
     }
+
+
+
+
+
+
 
 
     @Override

@@ -98,6 +98,40 @@ public class Database {
                 vehicle.getVehicleType(), vehicle.getFuelType(), vehicle.getUserLogin(), vehicle.getUuid(), vehicle.getKey());
     }
 
+    public int updateVehicleInDatabase(String table, Vehicle vehicle) {
+        String sqlRequest = "UPDATE " + table + " SET name = ?, coordinate_x = ?, coordinate_y = ?, creation_date = ?, " +
+                "engine_power = ?, vehicle_type = ?, fuel_type = ?, user_login = ?, key = ? WHERE id = ?";
+
+        Database database = Database.getInstance();
+        Connection connection = database.connection;
+        PreparedStatement preparedStatement;
+
+        try {
+            preparedStatement = connection.prepareStatement(sqlRequest);
+            preparedStatement.setString(1, vehicle.getName());
+            preparedStatement.setInt(2, vehicle.getCoordinates().getX());
+            preparedStatement.setDouble(3, vehicle.getCoordinates().getY());
+            preparedStatement.setTimestamp(4, Timestamp.valueOf(vehicle.getCreationDate()));
+            if (vehicle.getEnginePower() != null) {
+                preparedStatement.setLong(5, vehicle.getEnginePower());
+            } else {
+                preparedStatement.setNull(5, Types.BIGINT); // Set NULL for engine_power
+            }
+            preparedStatement.setString(6, vehicle.getVehicleType() != null ? vehicle.getVehicleType().toString() : null);
+            preparedStatement.setString(7, vehicle.getFuelType() != null ? vehicle.getFuelType().toString() : null);
+            preparedStatement.setString(8, vehicle.getUserLogin());
+            preparedStatement.setString(9, vehicle.getKey());
+            preparedStatement.setLong(10, vehicle.getId());
+
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
     private int addNewVehicle(String table, Long vehicleId, String name, int x, double y, LocalDateTime creationDate,
                               Long enginePower, VehicleType vehicleType, FuelType fuelType, String userLogin, UUID id, String key) {
         String sqlRequest = "INSERT INTO " + table + " (id, name, coordinate_x, coordinate_y, creation_date, engine_power, " +
