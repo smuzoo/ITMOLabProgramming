@@ -10,7 +10,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
-import java.util.Base64;
 
 
 public class Authentication {
@@ -109,7 +108,7 @@ public class Authentication {
                 MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
                 byte[] hash = messageDigest.digest(
                         (pepper + password + salt).getBytes(StandardCharsets.UTF_8));
-                String hashString = bytesToHexString(hash);;
+                String hashString = bytesToHexString(hash);
                 database.addUserToDB(name_table, login, salt, hashString);
                 User.setLogin(login);
                 User.setPassword(password);

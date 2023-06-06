@@ -6,7 +6,7 @@ import parsers.ConsoleParser;
 /**
  * The type Update id.
  */
-public class UpdateID implements Command {
+public class UpdateKey implements Command {
     @Override
     public void execute(String argument) {
         RemoveKey removeKey = new RemoveKey();
@@ -19,6 +19,6 @@ public class UpdateID implements Command {
 
     @Override
     public String description() {
-        return "update_id " + "{element} " + ": обновить значение элемента коллекции, id которого равен заданному";
+        return "update_key " + "{element} " + ": обновить значение элемента коллекции, key которого равен заданному";
     }
 }

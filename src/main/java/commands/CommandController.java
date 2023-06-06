@@ -85,13 +85,12 @@ public class CommandController {
         addCommand("remove_key", new RemoveKey());
         addCommand("show", new ShowCollection());
         addCommand("insert", new InsertVehicle(parsing));
-        addCommand("save", new Save());
         addCommand("execute_script", new ExecuteScript());
         addCommand("remove_greater", new RemoveGreater(parsing));
         addCommand("filer_greater_than_engine_power", new FilterGreaterThanEnginePower());
         addCommand("average_of_engine_power", new AverageOfEnginePower());
         addCommand("min_by_creation_date", new MinByCreationTime());
-        addCommand("update_id", new UpdateID());
+        addCommand("update_id", new UpdateKey());
         addCommand("replace_if_greater", new ReplaceIfGreater(parsing));
         addCommand("replace_if_lower", new ReplaceIfLower(parsing));
 
