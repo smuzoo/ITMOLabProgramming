@@ -26,14 +26,6 @@ public class UUIDValidator extends Validator {
         return id.equals("");
     }
 
-    /*private boolean isNotCanTransformToUUID(){
-        try {
-            UUID.fromString(id);
-        }catch (IllegalArgumentException e){
-            return true;
-        }
-        return false;
-    }*/
 
 
     @Override

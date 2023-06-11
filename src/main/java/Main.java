@@ -17,6 +17,7 @@ public class Main {
      */
     public static void main(String[] args) {
         try {
+            //Database db = Database.getInstance();
             VehicleCollection.readFromDatabase();
             Authentication.setReader(new ConsoleParser());
             Authentication.auth();

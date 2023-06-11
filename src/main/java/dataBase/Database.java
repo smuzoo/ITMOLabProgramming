@@ -8,7 +8,6 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 public class Database {
@@ -36,16 +35,6 @@ public class Database {
         }
     }
 
-    public Connection getConnection() {
-        try {
-            if (connection == null || connection.isClosed()) {
-                connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            }
-            return connection;
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed to establish a database connection.", e);
-        }
-    }
 
     public static synchronized Database getInstance() {
         if (instance == null) {
@@ -218,14 +207,7 @@ public class Database {
         }
     }
 
-    public void updateDatabase(Set<Map.Entry<String, Vehicle>> vehicleEntrySet) {
 
-        vehicleDatabase.clear();
-
-        for (Map.Entry<String, Vehicle> entry : vehicleEntrySet) {
-            vehicleDatabase.put(entry.getKey(), entry.getValue());
-        }
-    }
 
 }
 
